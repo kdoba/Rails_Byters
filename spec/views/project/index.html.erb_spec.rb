@@ -5,7 +5,8 @@ describe "projects/index.html.erb" do
   before do
     30.times do |n|
       Project.create!(name: "Project"+n.to_s,
-                      description: "Great projects"+n.to_s)
+                      description: "Great projects"+n.to_s,
+                      lifecycle_id: 3)
     end
 
     visit '/projects'
@@ -23,11 +24,14 @@ describe "projects/index.html.erb" do
     expect(page).to have_table('projects-table')
     expect(page.find('#projects-table thead tr')).to have_content("Name")
     expect(page.find('#projects-table thead tr')).to have_content("Description")
+    expect(page.find('#projects-table thead tr')).to have_content("Lifecycle")
   end
 
   it "should have a content from 'Projects'" do
     30.times do |n|
       expect(page).to have_content('Project' + n.to_s)
+      expect(page).to have_content('Great projects' + n.to_s)
+      expect(page).to have_content('Extreme Programming')
     end
   end
 end
