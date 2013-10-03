@@ -34,4 +34,5 @@ describe "projects/index.html.erb" do
       expect(page).to have_content('Extreme Programming')
     end
   end
+
 end

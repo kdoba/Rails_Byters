@@ -14,11 +14,11 @@
   </thead>
   <tbody>
 
-  <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.name %></td>
-        <td><%= project.description %></td>
-        <td><%= project.lifecycle_string %></td>
+  <% @projects.each_with_index do |project, index| %>
+      <tr id="row_<%= index %>" onclick="document.location = '<%= index+1 %>';" >
+        <td class="name"><%= project.name %></td>
+        <td class="description"><%= project.description %></td>
+        <td class="lifecycle"><%= project.lifecycle_string %></td>
       </tr>
   <% end %>
   </tbody>
