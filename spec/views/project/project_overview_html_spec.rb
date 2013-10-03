@@ -14,9 +14,10 @@ describe 'Project Overview' do
   end
 
   it "should have labels for name, description, and lifecycle" do
-    expect(page).to have_content('Name')
-    expect(page).to have_content('Description')
-    expect(page).to have_content('Lifecycle')
+    @label_names = ['Name', 'Description', 'Lifecycle', 'Total Estimation']
+    page.all('project_field_label').each { |element, index|
+      element.should have_content(@label_names[index])
+    }
   end
 
   it "should have input fields for project name, description, and lifecycle " do
@@ -26,7 +27,6 @@ describe 'Project Overview' do
   end
 
   it "should have a label and input field for total estimation " do
-    expect(page).to have_content('Total Estimation')
     expect(page).to have_selector('input[id=total_estimation][disabled]')
   end
 
