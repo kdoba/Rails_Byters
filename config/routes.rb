@@ -1,4 +1,7 @@
 PET::Application.routes.draw do
+
+  resources :projects
+
   get "projects/index"
   get 'projects' => 'projects#index'
   # The priority is based upon order of creation:
