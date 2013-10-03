@@ -2,15 +2,15 @@
 
 <div>
   <label class="project_field_label">Name</label>
-  <input type="text" id="name" value="" />
+  <input type="text" id="name" value=<%= @project.name %> />
 </div>
 <div>
  <label class="project_field_label">Description</label>
-  <input type="text" id="description" value="" />
+  <input type="text" id="description" value=<%= @project.description %> />
 </div>
 <div>
 <label class="project_field_label">Lifecycle</label>
-  <input type="text" id="lifecycle" value="" disabled="disabled" />
+  <input type="text" id="lifecycle" disabled="disabled" value=<%= @project.lifecycle_string %>  />
 </div>
 
 <div>

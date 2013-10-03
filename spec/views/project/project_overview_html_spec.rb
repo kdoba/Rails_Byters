@@ -4,7 +4,6 @@ require 'spec_helper'
 describe 'Project Overview' do
 
   before do
-    #project = FactoryGirl.generate(:project)
     @project = FactoryGirl.create(:project)
     visit '/projects/' + @project.id.to_s
   end
@@ -34,5 +33,11 @@ describe 'Project Overview' do
     expect(page).to have_button('Submit')
     expect(page).to have_button('Back')
     expect(page).to have_button('Delete')
+  end
+
+  it "should have input fields with correct values of the selected project" do
+    page.find('input#name').has_text? "First Project"
+    page.find('input#description').has_text? "Yohoho"
+    page.find('input#lifecycle').has_text? "Agile"
   end
 end
