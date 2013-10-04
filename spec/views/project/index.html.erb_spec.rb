@@ -35,4 +35,9 @@ describe "projects/index.html.erb" do
     end
   end
 
+  it "should have a link in the name column in 'Existing Projects' page" do
+    page.find("#row_0").find("a").click
+    current_path.should == "/projects/1"
+  end
+
 end

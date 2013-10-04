@@ -14,7 +14,7 @@ describe 'Project Overview' do
 
   it "should have labels for name, description, and lifecycle" do
     @label_names = ['Name', 'Description', 'Lifecycle', 'Total Estimation']
-    page.all('project_field_label').each { |element, index|
+    page.all('.project_field_label').each_with_index { |element, index|
       element.should have_content(@label_names[index])
     }
   end

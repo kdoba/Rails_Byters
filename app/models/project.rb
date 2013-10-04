@@ -1,4 +1,5 @@
 class Project < ActiveRecord::Base
+  has_many        :project_phases
   attr_accessible :name, :description, :lifecycle_id
 
   def lifecycle_string
