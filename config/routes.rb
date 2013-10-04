@@ -5,6 +5,7 @@ PET::Application.routes.draw do
   get "projects/index"
   get 'projects' => 'projects#index'
   get 'projects/:id' => 'projects#show', as: 'project'
+  #get 'projects/:id/project_phases' => 'projects'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
