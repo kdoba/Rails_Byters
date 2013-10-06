@@ -10,5 +10,6 @@ FactoryGirl.define do
   factory :project_phase, class: ProjectPhase do
     lifecycle_phase_id 1
     project_id 1
+    name "project phase default name"
   end
 end

@@ -33,6 +33,7 @@ describe ProjectPhasesController do
     it 'retrieves all project phases given a project id' do
       index = 1
       projectPhaseArray = ProjectPhasesController.getProjectPhases index
+      projectPhaseArray.should_not be_empty
       projectPhaseArray.each do |projectPhase|
         projectPhase.should be_a ProjectPhase
         projectPhase.project_id.should eq index

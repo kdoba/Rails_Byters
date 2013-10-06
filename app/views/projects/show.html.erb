@@ -14,6 +14,23 @@
 </div>
 
 <div>
+<table id="phase_table">
+  <thead>
+  <tr>
+        <th scope="col"> Name </th>
+        <th scope="col"> Estimates </th>
+  </tr>
+  </thead>
+
+  <tbody>
+    <% @project_phases.each_with_index do |project_phase, index| %>
+        <tr id="row_<%= index %>">
+          <td class="name"> TestProjectPhaseName </td>
+          <td class="estimates"> 100 </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
 </div>
 
 <div>

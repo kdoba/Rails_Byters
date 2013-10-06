@@ -5,6 +5,11 @@ describe 'Project Overview' do
 
   before do
     @project = FactoryGirl.create(:project)
+    @phases = Array.new
+    5.times do
+      @phases.push(FactoryGirl.create(:project_phase, project_id: @project.id, name: "TestProjectPhaseName"))
+    end
+
     visit '/projects/' + @project.id.to_s
   end
 
@@ -40,4 +45,21 @@ describe 'Project Overview' do
     page.find('input#description').has_text? "Yohoho"
     page.find('input#lifecycle').has_text? "Agile"
   end
+
+  it "should have a table of project phases" do
+    expect(page).to have_table('phase_table')
+  end
+
+  it "phase table should have headers called Name and Estimates" do
+    expect(page.find('#phase_table thead tr')).to have_content("Name")
+    expect(page.find('#phase_table thead tr')).to have_content("Estimates")
+  end
+
+  it "should have correct phase name and estimates in the phase table" do
+    @phases.each_with_index do |phase, index|
+      expect(page.find('#phase_table tbody tr#row_'+index.to_s+' td.name')).to have_content("TestProjectPhaseName")
+      expect(page.find('#phase_table tbody tr#row_'+index.to_s+' td.estimates')).to have_content(100)
+    end
+  end
+
 end

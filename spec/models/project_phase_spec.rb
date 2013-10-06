@@ -13,4 +13,14 @@ describe ProjectPhase do
       should belong_to :project
     end
   end
+
+  describe "ProjectPhase model has a valid name" do
+    it "should respond to a name field" do
+      should respond_to :name
+    end
+
+    it "should not have a name field that is null" do
+      ProjectPhase.new(:name => "").should_not be_valid
+    end
+  end
 end

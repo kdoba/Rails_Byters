@@ -3,10 +3,11 @@ require 'spec_helper'
 describe ProjectsController do
 
   before do
+    @projects = Array.new
     30.times do |n|
-      Project.create!(name: "Project"+n.to_s,
+      @projects.push (Project.create!(name: "Project"+n.to_s,
                       description: "Great projects"+n.to_s,
-                      lifecycle_id: n % 4)
+                      lifecycle_id: n % 4))
     end
   end
 
@@ -38,8 +39,14 @@ describe ProjectsController do
   describe "GET 'show'" do
     before do
       @index = 0
+      @numberOfPhases = 5
+      @numberOfPhases.times do
+        FactoryGirl.create(:project_phase, project: @projects[@index] , name: "TestProjectPhaseName")
+      end
+
       get "show", {:id => @index+1}
       @testProject = assigns(:project)
+      @testProjectPhases = assigns(:project_phases)
     end
     it "returns http success" do
       response.should be_success
@@ -55,6 +62,23 @@ describe ProjectsController do
       @testProject.lifecycle_string.should eq("Agile")
     end
 
+    it "has testsProjectPhases that is not nil" do
+      @testProjectPhases.should_not be_nil
+    end
+
+    it "has testProjectPhases which is a non-empty array" do
+      @testProjectPhases.should_not be_empty
+    end
+
+    it "has to retrieves the correct number of project phases" do
+      @testProjectPhases.count.should eq @numberOfPhases
+    end
+
+    it "retrieves all the project phases that belong to the project" do
+      @testProjectPhases.each do |projectPhase|
+        projectPhase.project_id.should == @testProject.id
+      end
+    end
   end
 
 end
