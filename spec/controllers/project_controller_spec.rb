@@ -40,8 +40,8 @@ describe ProjectsController do
     before do
       @index = 0
       @numberOfPhases = 5
-      @numberOfPhases.times do
-        FactoryGirl.create(:project_phase, project: @projects[@index] , name: "TestProjectPhaseName")
+      @numberOfPhases.times do |n|
+        FactoryGirl.create(:project_phase, project: @projects[@index], lifecycle_phase_id: n)
       end
 
       get "show", {:id => @index+1}

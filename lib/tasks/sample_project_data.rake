@@ -5,6 +5,7 @@
 namespace :db do
   desc "Fill dtabase with sample projects"
   task populate: :environment do
+
     30.times do |n|
 
       FactoryGirl.create(:project, name: "Project"+n.to_s,
