@@ -1,6 +1,8 @@
 class Project < ActiveRecord::Base
   has_many        :project_phases
   attr_accessible :name, :description, :lifecycle_id
+  validates :name, presence:true
+  validates :name, uniqueness:true
 
   def lifecycle_string
     # added dummy lifecycle table

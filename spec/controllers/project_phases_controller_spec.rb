@@ -17,8 +17,8 @@ describe ProjectPhasesController do
   describe 'get all project phases with project id' do
 
     before do
-      5.times do
-        project = FactoryGirl.create (:project)
+      5.times do |index|
+        project = FactoryGirl.create :project, :name => "name"+index.to_s
         4.times do |index|
           FactoryGirl.create(:project_phase, :lifecycle_phase_id => index, :project => project)
         end

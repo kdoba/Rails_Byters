@@ -7,6 +7,16 @@ describe Project do
       should respond_to :description
       should respond_to :lifecycle_string
     end
+
+    it "should not have name field that is empty" do
+      Project.new(:name => "").should_not be_valid
+    end
+
+    it "should not allow projects with duplicate names" do
+      Project.create!(:name => "test1")
+      duplicate_project = Project.new(:name => "test1")
+      duplicate_project.should_not be_valid
+    end
   end
 
   describe "Project model's association" do
