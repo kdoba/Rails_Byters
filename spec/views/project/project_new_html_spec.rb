@@ -29,5 +29,14 @@ describe 'New Project' do
     expect(page).to have_button('Submit')
   end
 
+  #it "clicking the submit button should redirect to project index" do
+  #  click_button "Submit"
+  #  @newProject = assigns(:new_project)
+  #  current_path.should == "/projects/" + @newProject.id.to_s
+  #end
+  #
+  #it "infers the controller path" do
+  #  expect(controller.request.path_parameters[:action]).to eq("new")
+  #end
 
 end
