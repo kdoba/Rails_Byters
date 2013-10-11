@@ -17,6 +17,10 @@ describe 'Project Overview' do
     expect(page).to have_title('Project Overview')
   end
 
+  it "should have a header called [project_name] Overview" do
+    page.find('#page_header').should have_content(@project.name + " Overview")
+  end
+
   it "should have labels for name, description, and lifecycle" do
     @label_names = ['Name', 'Description', 'Lifecycle', 'Total Estimation']
     page.all('.project_field_label').each_with_index { |element, index|
@@ -26,7 +30,7 @@ describe 'Project Overview' do
 
   it "should have input fields for project name, description, and lifecycle " do
     expect(page).to have_selector('input#name')
-    expect(page).to have_selector('input#description')
+    expect(page).to have_selector('textarea#description')
     expect(page).to have_selector('input[id=lifecycle][disabled]')
   end
 
@@ -35,14 +39,14 @@ describe 'Project Overview' do
   end
 
   it "should have buttons for Save, Cancel, and Delete actions " do
-    expect(page).to have_button('Submit')
-    expect(page).to have_button('Back')
-    expect(page).to have_button('Delete')
+    expect(page).to have_link('Submit')
+    expect(page).to have_link('Back')
+    expect(page).to have_link('Delete')
   end
 
   it "should have input fields with correct values of the selected project" do
     page.find('input#name').has_text? "First Project"
-    page.find('input#description').has_text? "Yohoho"
+    page.find('textarea#description').has_text? "Yohoho"
     page.find('input#lifecycle').has_text? "Agile"
   end
 

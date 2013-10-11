@@ -1,27 +1,25 @@
 <% provide(:title, "Projects") %>
 
-<h1>Existing Projects</h1>
-<p>Find me in app/views/project/index.html.erb</p>
-
+<h3>Existing Projects</h3>
 
 <table id="projects-table">
   <thead>
-  <tr>
-    <th scope="col">Name </th>
-    <th scope="col">Description</th>
-    <th scope="col">Lifecycle</th>
-  </tr>
+      <tr>
+        <th scope="col">Name </th>
+        <th scope="col">Description</th>
+        <th scope="col">Lifecycle</th>
+      </tr>
   </thead>
 
   <tbody>
-  <% @projects.each_with_index do |project, index| %>
-      <tr id="row_<%= index %>">
-        <td class="name">
-          <%= link_to project.name, project_path(:id => index + 1) %>
-        </td>
-        <td class="description"><%= project.description %></td>
-        <td class="lifecycle"><%= project.lifecycle_string %></td>
-      </tr>
-  <% end %>
+      <% @projects.each_with_index do |project, index| %>
+          <tr id="row_<%= index %>">
+            <td class="name">
+              <%= link_to project.name, project_path(:id => index + 1) %>
+            </td>
+            <td class="description"><%= project.description %></td>
+            <td class="lifecycle"><%= project.lifecycle_string %></td>
+          </tr>
+      <% end %>
   </tbody>
 </table>

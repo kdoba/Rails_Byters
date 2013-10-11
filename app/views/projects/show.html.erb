@@ -1,45 +1,66 @@
 <% provide(:title, "Project Overview") %>
 
-<div>
-  <label class="project_field_label">Name</label>
-  <input type="text" id="name" value=<%= @project.name %> />
-</div>
-<div>
- <label class="project_field_label">Description</label>
-  <input type="text" id="description" value=<%= @project.description %> />
-</div>
-<div>
-<label class="project_field_label">Lifecycle</label>
-  <input type="text" id="lifecycle" disabled="disabled" value=<%= @project.lifecycle_string %>  />
-</div>
 
-<div>
-<table id="phase_table">
-  <thead>
-  <tr>
-        <th scope="col"> Project Phases </th>
-        <th scope="col"> Estimates </th>
-  </tr>
-  </thead>
+<h3 id="page_header"><%= @project.name %> Overview</h3>
 
-  <tbody>
-    <% @project_phases.each_with_index do |project_phase, index| %>
-        <tr id="row_<%= index %>">
-          <td class="name"> <%= project_phase.name %> </td>
-          <td class="estimates"> 100 </td>
-        </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
+<form>
+  <fieldset>
+    <div class="row">
+      <div class="large-12 columns">
+        <label class="project_field_label">Name</label>
+        <input type="text" id="name" value="<%= @project.name %>">
+        </input>
+      </div>
+    </div>
 
-<div>
-<label class="project_field_label">Total Estimation</label>
-  <input type="text" id="total_estimation" value="" disabled="disabled" />
-</div>
+    <div class="row">
+      <div class="large-12 columns">
+        <label class="project_field_label">Description</label>
+        <textarea type="text" id="description"><%= @project.description %></textarea>
+      </div>
+    </div>
 
-<div>
-<input type="submit" name="Submit" value="Submit">
-<input type="submit" name="Back" value="Back">
-<input type="submit" name="Delete" value="Delete">
-</div>
+    <div class="row">
+      <div class="large-6 columns">
+        <label class="project_field_label">Lifecycle</label>
+        <input type="text" id="lifecycle" disabled="disabled" value="<%= @project.lifecycle_string %>"> </input>
+      </div>
+
+      <div class="large-6 columns">
+        <label class="project_field_label">Total Estimation</label>
+        <input type="text" id="total_estimation" value="" disabled="disabled" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-12 columns">
+          <table id="phase_table">
+            <thead>
+            <tr>
+              <th scope="col"> Project Phases </th>
+              <th scope="col"> Estimates </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% @project_phases.each_with_index do |project_phase, index| %>
+                <tr id="row_<%= index %>">
+                  <td class="name"> <%= project_phase.name %> </td>
+                  <td class="estimates"> 100 </td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-4 large-offset-8 columns">
+        <a href="#" class="tiny button" name="Submit" value="Submit">Submit</a>
+        <a href="#" class="tiny button" name="Back" value="Back">Back</a>
+        <a href="#" class="tiny button" name="Delete" value="Delete">Delete</a>
+      </div>
+    </div>
+  </fieldset>
+</form>
+
