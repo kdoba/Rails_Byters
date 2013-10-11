@@ -91,7 +91,7 @@ describe ProjectsController do
       should respond_to :create
     end
 
-    context "Actually create a new project" do
+    context "Successfully create a new project" do
       before do
         post "create", {:name => "Potato", :description =>"Tomato Project"}
         @newProject = assigns(:new_project)
@@ -105,6 +105,26 @@ describe ProjectsController do
         @newProject.should be_persisted
       end
 
+      it "should redirect to a project overview page after creating a project" do
+        #response.should redirect_to("projects/"+@newProject.id.to_s)
+        response.should render_template("show")
+      end
+
+      it "should have a flash message" do
+        flash[:success].should == "Project was successfully created"
+      end
+    end
+
+    context "Unsuccessfully create a new project" do
+      before do
+        post "create", {:description =>"Tomato Project"}
+        @newProject = assigns(:new_project)
+      end
+
+      #TODO: make this more detailed error message!!!
+      it "should have a error flash message" do
+        flash[:error].should == "Project was NOT created"
+      end
     end
   end
 

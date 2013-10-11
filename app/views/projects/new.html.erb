@@ -1,5 +1,6 @@
+<p id="error"><%= flash[:error] %></p>
 <% provide(:title, "Create New Project") %>
-<form action="/projects/create" method="post">
+<form id="project_create_form" action="/projects/create" method="post">
 <div>
   <label class="project_field_label">Name</label>
   <input type="text" id="name" />

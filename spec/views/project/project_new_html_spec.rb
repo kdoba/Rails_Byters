@@ -29,14 +29,16 @@ describe 'New Project' do
     expect(page).to have_button('Submit')
   end
 
-  #it "clicking the submit button should redirect to project index" do
-  #  click_button "Submit"
-  #  @newProject = assigns(:new_project)
-  #  current_path.should == "/projects/" + @newProject.id.to_s
+  it "should have a form where post action calls /projects/create" do
+    page.find("form#project_create_form").native.attributes["action"].to_s.should == "/projects/create"
+  end
+
+  #it "upon submit button click, display the result message that it is successfully/unsuccessfully created" do
+  #
   #end
   #
-  #it "infers the controller path" do
-  #  expect(controller.request.path_parameters[:action]).to eq("new")
+  #it "upon submit button click, redirects back to projects overview page" do
+  #
   #end
 
 end
