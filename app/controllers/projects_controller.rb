@@ -18,4 +18,8 @@ class ProjectsController < ApplicationController
     render action:"show"
   end
 
+  def new
+
+  end
+
 end

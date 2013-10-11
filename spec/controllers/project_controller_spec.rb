@@ -108,4 +108,14 @@ describe ProjectsController do
     end
   end
 
+  context "GET 'new'" do
+    before do
+      get 'new'
+    end
+
+    it "returns http success" do
+      response.should be_success
+    end
+  end
+
 end

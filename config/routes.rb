@@ -4,6 +4,7 @@ PET::Application.routes.draw do
 
   get "projects/index"
   get 'projects'        => 'projects#index'
+  get 'projects/new'    => 'projects#new',        as: 'new_project'
   get 'projects/:id'    => 'projects#show',       as: 'project'
   post 'projects'       => 'projects#create',     as: 'projects'
 
