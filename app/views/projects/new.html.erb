@@ -12,9 +12,9 @@
 <div>
   <label class="project_field_label">Lifecycle</label>
   <select id="lifecycle" name= "lifecycle_id" >
-    <option value = "1"> Agile </option>
-    <option value = "2"> Simple Waterfall </option>
-    <option value = "3"> Waterfall </option>
+    <% @lifecycles.each_with_index do |lifecycle, index| %>
+    <option value = <% index %> ><%= lifecycle.name %></option>
+    <% end %>
   </select>
 </div>
 <div>

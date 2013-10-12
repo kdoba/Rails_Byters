@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
   end
 
   def new
-
+    @lifecycles = Lifecycle.all
   end
 
 end
