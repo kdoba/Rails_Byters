@@ -10,6 +10,14 @@ describe 'New Project' do
     expect(page).to have_title('Create New Project')
   end
 
+  it "should have a heading called Create New Project" do
+    page.find('#page_header').text.should eq("Create New Project")
+  end
+
+  it "should have a fieldset with empty legend" do
+    page.should have_selector('fieldset')
+  end
+
   it "should have labels for Name, description, and lifecycle" do
     @label_names = ['Name', 'Description', 'Lifecycle']
     page.all('.project_field_label').should_not be_empty
@@ -21,7 +29,7 @@ describe 'New Project' do
 
   it "should have input fields for project name, description, and lifecycle " do
     expect(page).to have_selector('input#name')
-    expect(page).to have_selector('input#description')
+    expect(page).to have_selector('textarea#description')
     expect(page).to have_selector('select#lifecycle')
   end
 

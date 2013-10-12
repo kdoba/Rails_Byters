@@ -1,23 +1,35 @@
-<p id="error"><%= flash[:error] %></p>
 <% provide(:title, "Create New Project") %>
-<form id="project_create_form" action="/projects/create" method="post">
-<div>
-  <label class="project_field_label">Name</label>
-  <input type="text" id="name" name="name" />
-</div>
-<div>
-  <label class="project_field_label">Description</label>
-  <input type="text" id="description" name="description" />
-</div>
-<div>
-  <label class="project_field_label">Lifecycle</label>
-  <select id="lifecycle" name= "lifecycle_id" >
-    <option value = "1"> Agile </option>
-    <option value = "2"> Simple Waterfall </option>
-    <option value = "3"> Waterfall </option>
-  </select>
-</div>
-<div>
-  <input type="submit" name="Submit" value="Submit">
-</div>
-</form>
+
+<h3 id="page_header">Create New Project</h3>
+
+<fieldset>
+    <form id="project_create_form" action="/projects/create" method="post">
+        <div class="row">
+          <div class="large-12 columns">
+            <label class="project_field_label">Name</label>
+            <input type="text" id="name" name="name" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 columns">
+            <label class="project_field_label">Description</label>
+            <textarea type="text" id="description" name="description"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 columns">
+            <label class="project_field_label">Lifecycle</label>
+            <select id="lifecycle" name= "lifecycle_id" >
+              <option value = "1"> Agile </option>
+              <option value = "2"> Simple Waterfall </option>
+              <option value = "3"> Waterfall </option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-2 large-offset-10 columns">
+            <input class="tiny button" type="submit" name="Submit" value="Submit">
+          </div>
+        </div>
+    </form>
+</fieldset>

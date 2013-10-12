@@ -1,11 +1,9 @@
-<p id="success"><%= flash[:success] %></p>
 <% provide(:title, "Project Overview") %>
-
 
 <h3 id="page_header"><%= @project.name %> Overview</h3>
 
-<form>
-  <fieldset>
+<fieldset>
+  <form>
     <div class="row">
       <div class="large-12 columns">
         <label class="project_field_label">Name</label>
@@ -62,6 +60,5 @@
         <a href="#" class="tiny button" name="Delete" value="Delete">Delete</a>
       </div>
     </div>
-  </fieldset>
-</form>
-
+  </form>
+</fieldset>

@@ -123,7 +123,7 @@ describe ProjectsController do
 
       #TODO: make this more detailed error message!!!
       it "should have a error flash message" do
-        flash[:error].should == "Project was NOT created"
+        flash[:alert].should == "Project was NOT created"
       end
     end
   end
