@@ -106,8 +106,8 @@ describe ProjectsController do
       end
 
       it "should redirect to a project overview page after creating a project" do
-        #response.should redirect_to("projects/"+@newProject.id.to_s)
-        response.should render_template("show")
+        response.should redirect_to("/projects/"+@newProject.id.to_s)
+        #response.should render_template("show")
       end
 
       it "should have a flash message" do

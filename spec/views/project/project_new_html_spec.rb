@@ -33,12 +33,7 @@ describe 'New Project' do
     page.find("form#project_create_form").native.attributes["action"].to_s.should == "/projects/create"
   end
 
-  #it "upon submit button click, display the result message that it is successfully/unsuccessfully created" do
-  #
-  #end
-  #
-  #it "upon submit button click, redirects back to projects overview page" do
-  #
-  #end
-
+  it "should have three lifecycles in the lifecycle dropdown" do
+    page.should have_select("lifecycle", :options => ["Agile", "Simple Waterfall", "Waterfall"])
+  end
 end
