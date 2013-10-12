@@ -41,7 +41,8 @@ describe 'New Project' do
     page.find("form#project_create_form").native.attributes["action"].to_s.should == "/projects/create"
   end
 
-  it "should have three lifecycles in the lifecycle dropdown" do
-    page.should have_select("lifecycle", :options => ["Agile", "Simple Waterfall", "Waterfall"])
+  it "should have all lifecycle names in the lifecycle dropdown" do
+    lifecycleNames = Lifecycle.all.map {|lifecycle| lifecycle.name}
+    page.should have_select("lifecycle", :options => lifecycleNames)
   end
 end
