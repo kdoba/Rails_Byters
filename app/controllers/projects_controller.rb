@@ -16,18 +16,22 @@ class ProjectsController < ApplicationController
     @new_project = Project.new(name: params[:project][:name],
                                description: params[:project][:description],
                                lifecycle_id: params[:project][:lifecycle_id])
+
     if @new_project && @new_project.save
-      flash[:success] = "Project was successfully created"
+      flash.now[:success] = "Project was successfully created"
       redirect_to @new_project
     else
-      flash[:alert] = "Project was NOT created"
-      render action:"new"
+      flash.now[:alert] = "Please fix the following errors."
+
+      # /projects/new needs @lifecycles to render
+      @lifecycles = Lifecycle.all
+      render :new
     end
   end
 
   def new
-    @project    = Project.new
-    @lifecycles = Lifecycle.all
+    @new_project = Project.new
+    @lifecycles  = Lifecycle.all
   end
 
 end

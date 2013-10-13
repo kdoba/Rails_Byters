@@ -3,30 +3,34 @@
 <h3 id="page_header">Create New Project</h3>
 
 <fieldset>
-  <%= form_for @project do |f| %>
-        <div class="row">
-          <div class="large-12 columns">
-            <%= f.label :name, class: "project_field_label" %>
-            <%= f.text_field :name %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="large-12 columns">
-            <%= f.label :description, class: "project_field_label" %>
-            <%= f.text_area :description %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="large-12 columns">
-            <%= f.label :lifecycle_id, class: "project_field_label" %>
-            <%= f.select :lifecycle_id, @lifecycles.collect{ |l| [l.name, l.id] } %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="large-2 large-offset-10 columns">
-            <input class="tiny button" type="submit" name="Submit" value="Submit">
-          </div>
-        </div>
-    <!--</form>-->
-    <% end %>
+  <%= form_for @new_project do |f| %>
+    <div class="row">
+      <div class="large-12 columns">
+        <%= f.label :name, 'Name <small>required</small>'.html_safe, class: "project_field_label" %>
+        <%= f.text_field :name %>
+        <% if @new_project.errors.any? %>
+          <% @new_project.errors.full_messages.each do |msg| %>
+            <small class="error"><%= msg %></small>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <%= f.label :description, class: "project_field_label" %>
+        <%= f.text_area :description %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <%= f.label :lifecycle_id, class: "project_field_label" %>
+        <%= f.select :lifecycle_id, @lifecycles.collect{ |l| [l.name, l.id] } %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-2 large-offset-10 columns">
+        <input class="tiny button" type="submit" name="Submit" value="Submit">
+      </div>
+    </div>
+  <% end %>
 </fieldset>

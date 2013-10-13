@@ -111,7 +111,7 @@ describe ProjectsController do
       end
 
       it "should have a flash message" do
-        flash[:success].should == "Project was successfully created"
+        flash[:success].should_not be_empty
       end
     end
 
@@ -123,7 +123,7 @@ describe ProjectsController do
 
       #TODO: make this more detailed error message!!!
       it "should have a error flash message" do
-        flash[:alert].should == "Project was NOT created"
+        flash[:alert].should_not be_empty
       end
     end
   end

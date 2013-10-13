@@ -26,13 +26,14 @@
 </div>     -->
 <div class="row">
   <div class="large-9 large-centered columns" role="content">
-     <% flash.each do |name, msg| %>
-         <div data-alert class="alert-box <%= name %>">
-           <%= msg %>
-           <a href="#" class="close">&times;</a>
-         </div>
-     <% end %>
-     <%= yield %>
+    <% flash.each do |name, msg| %>
+       <div data-alert class="alert-box <%= name %>">
+         <%= msg %>
+         <a href="#" class="close">&times;</a>
+       </div>
+    <% end %>
+
+    <%= yield %>
   </div>
 </div>
 
