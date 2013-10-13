@@ -3,7 +3,7 @@ PET::Application.routes.draw do
   #resources :projects
 
   get "projects/index"
-  get 'projects'        => 'projects#index'
+  get 'projects'        => 'projects#index',      as: 'projects_index'
   get 'projects/new'    => 'projects#new',        as: 'new_project'
   get 'projects/:id'    => 'projects#show',       as: 'project'
   post 'projects/create'       => 'projects#create',     as: 'projects'

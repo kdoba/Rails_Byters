@@ -5,7 +5,6 @@ describe Project do
     it "model has field name and description" do
       should respond_to :name
       should respond_to :description
-      should respond_to :lifecycle_string
     end
 
     it "should not have name field that is empty" do
@@ -23,5 +22,7 @@ describe Project do
     it "Project has many ProjectPhase" do
       should have_many :project_phases
     end
+
+    it { should belong_to :lifecycle}
   end
 end

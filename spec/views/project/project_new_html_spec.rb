@@ -45,4 +45,10 @@ describe 'New Project' do
     lifecycleNames = Lifecycle.all.map {|lifecycle| lifecycle.name}
     page.should have_select("project_lifecycle_id", :options => lifecycleNames)
   end
+
+  it "should have a cancel button that redirects to project index page" do
+    page.should have_link('Cancel')
+    click_link('Cancel')
+    current_path.should eq "/projects"
+  end
 end

@@ -26,7 +26,7 @@
           <%= link_to project.name, project_path(:id => index + 1) %>
         </td>
         <td class="description"><%= project.description %></td>
-        <td class="lifecycle"><%= project.lifecycle_string %></td>
+        <td class="lifecycle"><%= project.lifecycle.name %></td>
       </tr>
 <% end %>
   </tbody>

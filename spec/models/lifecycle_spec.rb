@@ -20,4 +20,6 @@ describe Lifecycle do
   it "should have many lifecycle phases" do
     should have_many :lifecycle_phases
   end
+
+  it {should have_many :projects}
 end

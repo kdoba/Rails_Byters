@@ -2,18 +2,6 @@ require 'spec_helper'
 
 describe ProjectPhasesController do
 
-  #before do
-  #  #30.times do |n|
-  #  #  Project.create!(name: "Project"+n.to_s,
-  #  #                  description: "Great projects"+n.to_s,
-  #  #                  lifecycle_id: n % 4)
-  #  #end
-  #
-  #  @project = FactoryGirl.create (:project)
-  #
-  #end
-
-
   describe 'get all project phases with project id' do
 
     before do

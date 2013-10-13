@@ -4,10 +4,10 @@ require 'spec_helper'
 describe 'Project Overview' do
 
   before do
-    @project = FactoryGirl.create(:project)
+    @project = FactoryGirl.create(:project, :lifecycle_id => 1)
     @phases = Array.new
     5.times do |n|
-      @phases.push(FactoryGirl.create(:project_phase, project_id: @project.id, lifecycle_phase_id: n))
+      @phases.push(FactoryGirl.create(:project_phase, project_id: @project.id, lifecycle_phase_id: n+1))
     end
 
     visit '/projects/' + @project.id.to_s

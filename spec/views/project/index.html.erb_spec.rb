@@ -3,12 +3,13 @@ require 'spec_helper'
 describe "projects/index.html.erb" do
 
   before do
-    30.times do |n|
-      Project.create!(name: "Project"+n.to_s,
-                      description: "Great projects"+n.to_s,
-                      lifecycle_id: 3)
-    end
 
+    @lifecycleCount = Lifecycle.count
+    30.times do |n|
+      Project.create!(name: "TestProject"+n.to_s,
+                      description: "Great projects"+n.to_s,
+                      lifecycle_id: n % @lifecycleCount + 1)
+    end
     visit '/projects'
   end
 
@@ -40,7 +41,7 @@ describe "projects/index.html.erb" do
     30.times do |n|
       expect(page).to have_content('Project' + n.to_s)
       expect(page).to have_content('Great projects' + n.to_s)
-      expect(page).to have_content('Extreme Programming')
+      expect(page).to have_content(Lifecycle.find(n % @lifecycleCount + 1).name)
     end
   end
 

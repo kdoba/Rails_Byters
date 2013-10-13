@@ -10,18 +10,6 @@ namespace :db do
 
   task populate: :environment do
 
-    10.times do |n|
-
-      FactoryGirl.create(:project, name: "Project"+n.to_s,
-                         description: "Great projects"+n.to_s,
-                         lifecycle_id: n % 4)
-
-      5.times do |m|
-        FactoryGirl.create(:project_phase, :lifecycle_phase_id => m, :project_id => n+1)
-      end
-    end
-
-
     #populate the pre-defined lifecycles and lifecycle phases
 
     lifecycleData = {       "Waterfall" => ["Requirement Specification", "Design", "Construction", "Integration",
@@ -41,6 +29,20 @@ namespace :db do
         FactoryGirl.create(:lifecycle_phase, name: phase, sequenceNumber: index, lifecycle_id:newLifecycle.id)
       }
     }
+
+    @lifecycleCount = Lifecycle.count
+    if Rails.env.development?
+      10.times do |n|
+
+        FactoryGirl.create(:project, name: "Project"+n.to_s,
+                           description: "Great projects"+n.to_s,
+                           lifecycle_id: n % @lifecycleCount + 1)
+
+        @lifecycleCount.times do |m|
+          FactoryGirl.create(:project_phase, :lifecycle_phase_id => m, :project_id => n+1)
+        end
+      end
+    end
 
   end
 end

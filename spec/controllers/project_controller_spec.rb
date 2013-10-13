@@ -9,7 +9,7 @@ describe ProjectsController do
       30.times do |n|
         @projects.push (Project.create!(name: "Project"+n.to_s,
                         description: "Great projects"+n.to_s,
-                        lifecycle_id: n % 4))
+                        lifecycle_id: n % Lifecycle.count + 1))
       end
     end
 
@@ -43,7 +43,7 @@ describe ProjectsController do
         @index = 0
         @numberOfPhases = 5
         @numberOfPhases.times do |n|
-          FactoryGirl.create(:project_phase, project: @projects[@index], lifecycle_phase_id: n)
+          FactoryGirl.create(:project_phase, project: @projects[@index], lifecycle_phase_id: n+1)
         end
 
         get "show", {:id => @index+1}
@@ -61,7 +61,7 @@ describe ProjectsController do
       it "show has access to project field variables" do
         @testProject.name.should eq("Project"+@index.to_s)
         @testProject.description.should eq("Great projects"+@index.to_s)
-        @testProject.lifecycle_string.should eq("Agile")
+        @testProject.lifecycle.name.should eq (Lifecycle.find(@index + 1).name) #_string.should eq("Agile")
       end
 
       it "has testsProjectPhases that is not nil" do

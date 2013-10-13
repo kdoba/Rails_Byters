@@ -2,13 +2,13 @@ class ProjectsController < ApplicationController
 
   #GET /projects
   def index
-    @projects = Project.all
+    @projects = Project.joins(:lifecycle)
   end
 
   #GET /projects/1
   def show
-    @project = Project.find(params[:id])
     @project_phases = ProjectPhasesController.getProjectPhases(params[:id])
+    @project = Project.joins(:lifecycle).find(params[:id])
   end
 
   #POST /projects
