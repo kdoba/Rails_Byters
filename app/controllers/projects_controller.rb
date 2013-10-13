@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
                                lifecycle_id: params[:project][:lifecycle_id])
 
     if @new_project && @new_project.save
-      flash.now[:success] = "Project was successfully created"
+      flash[:success] = "Project was successfully created"
       redirect_to @new_project
     else
       flash.now[:alert] = "Please fix the following errors."
