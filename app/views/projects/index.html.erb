@@ -1,6 +1,14 @@
 <% provide(:title, "Projects") %>
 
-<h3>Existing Projects</h3>
+<div class="row">
+  <div class="large-6 columns">
+    <h3>Existing Projects</h3>
+  </div>
+
+  <div class="large-4 large-offset-2 columns">
+    <%= link_to "Create New Project", new_project_path, class: "button expand" %>
+  </div>
+</div>
 
 <table id="projects-table">
   <thead>
@@ -12,14 +20,14 @@
   </thead>
 
   <tbody>
-      <% @projects.each_with_index do |project, index| %>
-          <tr id="row_<%= index %>">
-            <td class="name">
-              <%= link_to project.name, project_path(:id => index + 1) %>
-            </td>
-            <td class="description"><%= project.description %></td>
-            <td class="lifecycle"><%= project.lifecycle_string %></td>
-          </tr>
-      <% end %>
+    <% @projects.each_with_index do |project, index| %>
+      <tr id="row_<%= index %>">
+        <td class="name">
+          <%= link_to project.name, project_path(:id => index + 1) %>
+        </td>
+        <td class="description"><%= project.description %></td>
+        <td class="lifecycle"><%= project.lifecycle_string %></td>
+      </tr>
+<% end %>
   </tbody>
 </table>

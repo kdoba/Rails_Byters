@@ -20,6 +20,15 @@ describe "projects/index.html.erb" do
     expect(page).to have_content('Existing Projects')
   end
 
+  it "should have a link, displayed as a button, called 'Create New Project'" do
+    page.should have_link("Create New Project")
+  end
+
+  it "should redirect to /projects/new when 'Create New Project' is clicked" do
+    click_link("Create New Project")
+    current_path.should eq("/projects/new")
+  end
+
   it "should have a table with headers for name and description" do
     expect(page).to have_table('projects-table')
     expect(page.find('#projects-table thead tr')).to have_content("Name")
