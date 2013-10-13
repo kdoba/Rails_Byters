@@ -70,4 +70,10 @@ describe 'Project Overview' do
     end
   end
 
+  it "should have a back button that redirects to project index page" do
+    page.should have_link('Back')
+    click_link('Back')
+    current_path.should eq "/projects"
+  end
+
 end
