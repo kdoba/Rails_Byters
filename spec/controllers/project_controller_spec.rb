@@ -93,7 +93,7 @@ describe ProjectsController do
 
     context "Successfully create a new project" do
       before do
-        post "create", {:name => "Potato", :description =>"Tomato Project"}
+        post "create", {:project => {:name => "Potato", :description =>"Tomato Project"}}
         @newProject = assigns(:new_project)
       end
 
@@ -117,7 +117,7 @@ describe ProjectsController do
 
     context "Unsuccessfully create a new project" do
       before do
-        post "create", {:description =>"Tomato Project"}
+        post "create", {:project => {:description =>"Tomato Project"}}
         @newProject = assigns(:new_project)
       end
 

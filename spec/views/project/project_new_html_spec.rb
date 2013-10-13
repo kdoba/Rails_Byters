@@ -28,9 +28,9 @@ describe 'New Project' do
   end
 
   it "should have input fields for project name, description, and lifecycle " do
-    expect(page).to have_selector('input#name')
-    expect(page).to have_selector('textarea#description')
-    expect(page).to have_selector('select#lifecycle')
+    expect(page).to have_selector('input#project_name')
+    expect(page).to have_selector('textarea#project_description')
+    expect(page).to have_selector('select#project_lifecycle_id')
   end
 
   it "should have button Submit" do
@@ -38,11 +38,11 @@ describe 'New Project' do
   end
 
   it "should have a form where post action calls /projects/create" do
-    page.find("form#project_create_form").native.attributes["action"].to_s.should == "/projects/create"
+    page.find("form#new_project").native.attributes["action"].to_s.should == "/projects/create"
   end
 
   it "should have all lifecycle names in the lifecycle dropdown" do
     lifecycleNames = Lifecycle.all.map {|lifecycle| lifecycle.name}
-    page.should have_select("lifecycle", :options => lifecycleNames)
+    page.should have_select("project_lifecycle_id", :options => lifecycleNames)
   end
 end

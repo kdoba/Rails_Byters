@@ -3,27 +3,23 @@
 <h3 id="page_header">Create New Project</h3>
 
 <fieldset>
-    <form id="project_create_form" action="/projects/create" method="post">
+  <%= form_for @project do |f| %>
         <div class="row">
           <div class="large-12 columns">
-            <label class="project_field_label">Name</label>
-            <input type="text" id="name" name="name" />
+            <%= f.label :name, class: "project_field_label" %>
+            <%= f.text_field :name %>
           </div>
         </div>
         <div class="row">
           <div class="large-12 columns">
-            <label class="project_field_label">Description</label>
-            <textarea type="text" id="description" name="description"></textarea>
+            <%= f.label :description, class: "project_field_label" %>
+            <%= f.text_area :description %>
           </div>
         </div>
         <div class="row">
           <div class="large-12 columns">
-            <label class="project_field_label">Lifecycle</label>
-            <select id="lifecycle" name= "lifecycle_id" >
-              <% @lifecycles.each_with_index do |lifecycle, index| %>
-                <option value = <% index %> ><%= lifecycle.name %></option>
-              <% end %>
-            </select>
+            <%= f.label :lifecycle_id, class: "project_field_label" %>
+            <%= f.select :lifecycle_id, @lifecycles.collect{ |l| [l.name, l.id] } %>
           </div>
         </div>
         <div class="row">
@@ -31,5 +27,6 @@
             <input class="tiny button" type="submit" name="Submit" value="Submit">
           </div>
         </div>
-    </form>
+    <!--</form>-->
+    <% end %>
 </fieldset>

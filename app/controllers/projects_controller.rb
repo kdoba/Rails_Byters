@@ -13,9 +13,10 @@ class ProjectsController < ApplicationController
 
   #POST /projects
   def create
-    @new_project = Project.new(name: params[:name], description: params[:description],
-                               lifecycle_id: params[:lifecycle_id])
-     if @new_project && @new_project.save
+    @new_project = Project.new(name: params[:project][:name],
+                               description: params[:project][:description],
+                               lifecycle_id: params[:project][:lifecycle_id])
+    if @new_project && @new_project.save
       flash[:success] = "Project was successfully created"
       redirect_to @new_project
     else
@@ -25,6 +26,7 @@ class ProjectsController < ApplicationController
   end
 
   def new
+    @project    = Project.new
     @lifecycles = Lifecycle.all
   end
 
