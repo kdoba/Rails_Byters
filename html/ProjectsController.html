@@ -131,7 +131,17 @@
   <h1 class="class">class ProjectsController</h1>
 
   <div id="description" class="description">
-    
+    <ul><li>
+<p><strong>Filename</strong>    : projects_controller.rb</p>
+</li><li>
+<p><strong>Date</strong>        : 09-30-2013</p>
+</li><li>
+<p><strong>Team</strong>        : Rails Byters</p>
+</li><li>
+<p><strong>Description</strong> : This controller provides a REST api to
+query, create, and modify projects in <a href="PET.html">PET</a></p>
+</li></ul>
+
   </div><!-- description -->
 
   
@@ -163,12 +173,35 @@
 
         <div class="method-description">
           
-          <p>POST /projects</p>
+          <p>This function accept a json string as parameters for a new project and
+attempt to create a new project in the database.</p>
+<ul><li>
+<p><strong>Args</strong>    :</p>
+<ul><li>
+<p><code>name:string</code> - the name of the project</p>
+</li><li>
+<p><code>description:string</code> - the description string of the project</p>
+</li><li>
+<p><code>lifecycle_id:number</code> - the id of the project lifecycle</p>
+</li></ul>
+</li><li>
+<p><strong>Returns</strong> :</p>
+<ul><li>
+<p>if successful: redirects to project overview page and flash success message</p>
+</li><li>
+<p>if unsuccessful: redirects to new project form and flash error message</p>
+</li></ul>
+</li><li>
+<p><strong>Http</strong>    :</p>
+<ul><li>
+<p><code>POST /projects</code></p>
+</li></ul>
+</li></ul>
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/projects_controller.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/controllers/projects_controller.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@new_project</span> = <span class="ruby-constant">Project</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:project</span>][<span class="ruby-value">:name</span>],
                              <span class="ruby-identifier">description</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:project</span>][<span class="ruby-value">:description</span>],
@@ -206,12 +239,19 @@
 
         <div class="method-description">
           
-          <p>GET /projects</p>
+          <p>This function joins project table with lifecycle table and returns a list
+of all projects with matching lifecycle information</p>
+<ul><li>
+<p><strong>Http</strong>  :</p>
+<ul><li>
+<p><code>GET /projects</code></p>
+</li></ul>
+</li></ul>
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/projects_controller.rb, line 4</span>
+            <pre><span class="ruby-comment"># File app/controllers/projects_controller.rb, line 12</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@projects</span> = <span class="ruby-constant">Project</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:lifecycle</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -236,12 +276,19 @@
 
         <div class="method-description">
           
-          
+          <p>This function gets a list of all lifecycles in lifecycle table and renders
+the new project html form</p>
+<ul><li>
+<p><strong>Http</strong>  :</p>
+<ul><li>
+<p><code>GET /projects/new</code></p>
+</li></ul>
+</li></ul>
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/projects_controller.rb, line 32</span>
+            <pre><span class="ruby-comment"># File app/controllers/projects_controller.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@new_project</span> = <span class="ruby-constant">Project</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@lifecycles</span>  = <span class="ruby-constant">Lifecycle</span>.<span class="ruby-identifier">all</span>
@@ -267,12 +314,19 @@
 
         <div class="method-description">
           
-          <p>GET /projects/1</p>
+          <p>This function returns a project with a given id and its matching lifecycle
+information</p>
+<ul><li>
+<p><strong>Http</strong>  :</p>
+<ul><li>
+<p><code>GET /projects/1</code></p>
+</li></ul>
+</li></ul>
           
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/projects_controller.rb, line 9</span>
+            <pre><span class="ruby-comment"># File app/controllers/projects_controller.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@project_phases</span> = <span class="ruby-constant">ProjectPhasesController</span>.<span class="ruby-identifier">getProjectPhases</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@project</span> = <span class="ruby-constant">Project</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:lifecycle</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])

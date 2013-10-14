@@ -125,7 +125,17 @@
   <h1 class="class">class ProjectPhasesController</h1>
 
   <div id="description" class="description">
-    
+    <ul><li>
+<p><strong>Filename</strong>    : project_phases_controller.rb</p>
+</li><li>
+<p><strong>Date</strong>        : 09-30-2013</p>
+</li><li>
+<p><strong>Team</strong>        : Rails Byters</p>
+</li><li>
+<p><strong>Description</strong> : This controller provides an api to query and
+create project phases in <a href="PET.html">PET</a></p>
+</li></ul>
+
   </div><!-- description -->
 
   
@@ -157,12 +167,24 @@
 
         <div class="method-description">
           
-          
+          <p>This function accept a project id and returns all project phases that
+belongs to the given project in the database.</p>
+<ul><li>
+<p><strong>Args</strong>    :</p>
+<ul><li>
+<p><code>projectId:number</code> - the id of a project in project table</p>
+</li></ul>
+</li><li>
+<p><strong>Returns</strong> :</p>
+<ul><li>
+<p>an Array of projectPhases that belongs to the given project</p>
+</li></ul>
+</li></ul>
           
 
           
           <div class="method-source-code" id="getProjectPhases-source">
-            <pre><span class="ruby-comment"># File app/controllers/project_phases_controller.rb, line 3</span>
+            <pre><span class="ruby-comment"># File app/controllers/project_phases_controller.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">getProjectPhases</span> (<span class="ruby-identifier">projectId</span>)
   <span class="ruby-identifier">projectPhases</span> = <span class="ruby-constant">ProjectPhase</span>.<span class="ruby-identifier">where</span> <span class="ruby-value">:project_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">projectId</span>
   <span class="ruby-identifier">projectPhases</span>.<span class="ruby-identifier">to_a</span>
