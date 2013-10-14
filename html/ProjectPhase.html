@@ -126,6 +126,28 @@
 
   <div id="description" class="description">
     
+<h2 id="label-ProjectPhase.rb">ProjectPhase.rb</h2>
+
+<p>A series of <a href="ProjectPhase.html">ProjectPhase</a>, when a specific
+<a href="Lifecycle.html">Lifecycle</a> is chosen within a <a
+href="Project.html">Project</a>, is automatically generated from the <a
+href="LifecyclePhase.html">LifecyclePhase</a> model that the <a
+href="Lifecycle.html">Lifecycle</a> of a <a href="Project.html">Project</a>
+contains. This file includes the details of ProjectPhases: the references
+to both a <a href="Project.html">Project</a> that <a
+href="ProjectPhase.html">ProjectPhase</a> are a part of, and a <a
+href="LifecyclePhase.html">LifecyclePhase</a> that the <a
+href="Lifecycle.html">Lifecycle</a> defined consists of.</p>
+
+<h3 id="label-Fields%3A">Fields:</h3>
+<ul><li>
+<p>project_id: unique numeric ID that refers to the associated <a
+href="Project.html">Project</a> (required)</p>
+</li><li>
+<p>lifecycle_phase_id: unique numeric ID that refers to the associated <a
+href="LifecyclePhase.html">LifecyclePhase</a> (required)</p>
+</li></ul>
+
   </div><!-- description -->
 
   
@@ -162,7 +184,7 @@
 
           
           <div class="method-source-code" id="name-source">
-            <pre><span class="ruby-comment"># File app/models/project_phase.rb, line 7</span>
+            <pre><span class="ruby-comment"># File app/models/project_phase.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">name</span>
   <span class="ruby-ivar">@lifecycle_phase_names</span> = [<span class="ruby-string">&quot;Requirements&quot;</span>, <span class="ruby-string">&quot;Design&quot;</span>, <span class="ruby-string">&quot;Implementation&quot;</span>, <span class="ruby-string">&quot;Verification&quot;</span>, <span class="ruby-string">&quot;Maintenance&quot;</span>]
 

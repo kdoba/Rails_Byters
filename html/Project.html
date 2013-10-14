@@ -116,6 +116,31 @@
 
   <div id="description" class="description">
     
+<h2 id="label-project.rb">project.rb</h2>
+
+<p>A project is a collaborative product which consists of a series of plans
+that user defines to carry out the plans. This file contains the details of
+a project that user creates.</p>
+
+<p>It also includes the <a href="Project.html">Project</a> model definition
+with associations to different models (<a
+href="ProjectPhase.html">ProjectPhase</a> and <a
+href="Lifecycle.html">Lifecycle</a>). One project is composed of the name
+of a project, the description, and the ID of a specific lifecycle that the
+project uses.</p>
+
+<h3 id="label-Fields%3A">Fields:</h3>
+<ul><li>
+<p>Name: unique character string that identifies the <a
+href="Lifecycle.html">Lifecycle</a> (required)</p>
+</li><li>
+<p>Description: character string that explains the <a
+href="Lifecycle.html">Lifecycle</a> (optional)</p>
+</li><li>
+<p>lifecycle_id: a numeric ID used as a foreign key to locate a specific
+lifecycle (required)</p>
+</li></ul>
+
   </div><!-- description -->
 
   
