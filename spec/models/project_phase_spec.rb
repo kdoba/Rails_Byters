@@ -29,8 +29,12 @@ describe ProjectPhase do
   end
 
   describe "ProjectPhase model's association" do
-    it "ProjectPhase belongs to Project" do
+    it "should belong to Project" do
       should belong_to :project
+    end
+
+    it "should have many project phase deliverables" do
+      should have_many :project_phase_deliverables
     end
   end
 

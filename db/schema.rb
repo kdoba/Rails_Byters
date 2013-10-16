@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131006013603) do
+ActiveRecord::Schema.define(:version => 20131016034941) do
 
   create_table "lifecycle_phases", :force => true do |t|
     t.string   "name"
@@ -27,6 +27,19 @@ ActiveRecord::Schema.define(:version => 20131006013603) do
     t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "project_phase_deliverables", :force => true do |t|
+    t.integer  "project_phase_id"
+    t.string   "name"
+    t.string   "description"
+    t.integer  "uom_id"
+    t.integer  "size"
+    t.decimal  "rate"
+    t.integer  "complexity_id"
+    t.integer  "deliverable_type_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "project_phases", :force => true do |t|
