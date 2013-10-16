@@ -8,6 +8,10 @@ PET::Application.routes.draw do
   get 'projects/:id'    => 'projects#show',       as: 'project'
   post 'projects/create'       => 'projects#create',     as: 'projects'
 
+
+  get 'project_phases/:id'    => 'project_phases#show',       as: 'project_phase'
+
+
   #get 'projects/:id/project_phases' => 'projects'
 
   # The priority is based upon order of creation:
