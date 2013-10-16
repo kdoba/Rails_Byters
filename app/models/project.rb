@@ -27,11 +27,15 @@ class Project < ActiveRecord::Base
   # A project name must be unique across the whole database.
   validates :name, uniqueness:true
 
-  # Below code is commented out for the future use?
-  #def lifecycle_string
-  #  # added dummy lifecycle table
-  #  @lifecycle_table = ["Agile", "Waterfall", "Simple Waterfall", "Extreme Programming"]
-  #
-  #  @lifecycle_table[lifecycle_id]
-  #end
+  # A project lifecycle_id is required to create a project.
+  validates :lifecycle_id, presence:true
+
+  after_create :create_project_phases
+
+  def create_project_phases
+    lifecyclePhases = LifecyclePhase.find_all_by_lifecycle_id(self.lifecycle_id)
+    lifecyclePhases.each do |lifecyclePhase|
+      ProjectPhase.create(project_id: self.id, lifecycle_phase_id: lifecyclePhase.id)
+    end
+  end
 end

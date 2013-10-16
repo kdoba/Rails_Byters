@@ -11,8 +11,8 @@ class ProjectPhasesController < ApplicationController
   #   - <tt>projectId:number</tt> - the id of a project in project table
   # * *Returns* :
   #   - an Array of projectPhases that belongs to the given project
-  def self.getProjectPhases (projectId)
-    projectPhases = ProjectPhase.where :project_id => projectId
-    projectPhases.to_a
-  end
+  #def self.getProjectPhases (projectId)
+  #  projectPhases = ProjectPhase.where :project_id => projectId
+  #  projectPhases.to_a
+  #end
 end

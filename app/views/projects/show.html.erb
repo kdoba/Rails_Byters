@@ -42,7 +42,7 @@
             </thead>
 
             <tbody>
-            <% @project_phases.each_with_index do |project_phase, index| %>
+            <% @project.project_phases.each_with_index do |project_phase, index| %>
                 <tr id="row_<%= index %>">
                   <td class="name"> <%= project_phase.name %> </td>
                   <td class="estimates"> 100 </td>

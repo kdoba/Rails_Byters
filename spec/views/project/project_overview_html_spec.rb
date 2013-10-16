@@ -5,11 +5,6 @@ describe 'Project Overview' do
 
   before do
     @project = FactoryGirl.create(:project, :lifecycle_id => 1)
-    @phases = Array.new
-    5.times do |n|
-      @phases.push(FactoryGirl.create(:project_phase, project_id: @project.id, lifecycle_phase_id: n+1))
-    end
-
     visit '/projects/' + @project.id.to_s
   end
 
@@ -60,11 +55,11 @@ describe 'Project Overview' do
   end
 
   it "should have the correct number of rows displaying the project phases" do
-    page.all('#phase_table tbody tr').count.should eq @phases.count
+    page.all('#phase_table tbody tr').count.should eq @project.project_phases.count
   end
 
   it "should have correct phase name and estimates in the phase table" do
-    @phases.each_with_index do |phase, index|
+    @project.project_phases.each_with_index do |phase, index|
       expect(page.find('#phase_table tbody tr#row_'+index.to_s+' td.name')).to have_content(phase.name)
       expect(page.find('#phase_table tbody tr#row_'+index.to_s+' td.estimates')).to have_content(100)
     end

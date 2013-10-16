@@ -41,14 +41,9 @@ describe ProjectsController do
     context "GET 'show'" do
       before do
         @index = 0
-        @numberOfPhases = 5
-        @numberOfPhases.times do |n|
-          FactoryGirl.create(:project_phase, project: @projects[@index], lifecycle_phase_id: n+1)
-        end
-
         get "show", {:id => @index+1}
         @testProject = assigns(:project)
-        @testProjectPhases = assigns(:project_phases)
+        @testProjectPhases = @testProject.project_phases
       end
       it "returns http success" do
         response.should be_success
@@ -63,24 +58,6 @@ describe ProjectsController do
         @testProject.description.should eq("Great projects"+@index.to_s)
         @testProject.lifecycle.name.should eq (Lifecycle.find(@index + 1).name) #_string.should eq("Agile")
       end
-
-      it "has testsProjectPhases that is not nil" do
-        @testProjectPhases.should_not be_nil
-      end
-
-      it "has testProjectPhases which is a non-empty array" do
-        @testProjectPhases.should_not be_empty
-      end
-
-      it "has to retrieves the correct number of project phases" do
-        @testProjectPhases.count.should eq @numberOfPhases
-      end
-
-      it "retrieves all the project phases that belong to the project" do
-        @testProjectPhases.each do |projectPhase|
-          projectPhase.project_id.should == @testProject.id
-        end
-      end
     end
 
   end
@@ -93,7 +70,9 @@ describe ProjectsController do
 
     context "Successfully create a new project" do
       before do
-        post "create", {:project => {:name => "Potato", :description =>"Tomato Project"}}
+        post "create", {:project => {:name => "Potato",
+                                     :description =>"Tomato Project",
+                                     :lifecycle_id => 1}}
         @newProject = assigns(:new_project)
       end
 

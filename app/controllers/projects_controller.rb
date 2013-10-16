@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
   # * *Http*  :
   #   - <tt>GET /projects/1</tt>
   def show
-    @project_phases = ProjectPhasesController.getProjectPhases(params[:id])
+    #@project_phases = ProjectPhasesController.getProjectPhases(params[:id])
     @project = Project.joins(:lifecycle).find(params[:id])
   end
 
