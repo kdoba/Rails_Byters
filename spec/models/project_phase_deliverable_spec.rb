@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe ProjectPhaseDeliverable do
 
-
-  #let(:project_phase_deliverable) { stub(email: 'ash@zombiemail.com') }
   context 'field validation' do
     let(:project_phase_deliverable) {ProjectPhaseDeliverable.new}
     before do

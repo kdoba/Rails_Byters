@@ -2,11 +2,6 @@ require 'spec_helper'
 
 describe ProjectPhase do
   describe "ProjectPhase model validation tests" do
-
-    #before do
-    #  @lifecycle_phase_names = ["Requirements", "Design", "Implementation", "Verification", "Maintenance"]
-    #end
-
     it "model has fields lifecycle phase id and project id" do
       should respond_to :lifecycle_phase_id
       should respond_to :project_id

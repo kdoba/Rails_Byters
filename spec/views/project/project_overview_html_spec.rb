@@ -34,7 +34,7 @@ describe 'Project Overview' do
   end
 
   it "should have buttons for Save, Cancel, and Delete actions " do
-    expect(page).to have_link('Submit')
+    expect(page).to have_link('Save')
     expect(page).to have_link('Back')
     expect(page).to have_link('Delete')
   end
