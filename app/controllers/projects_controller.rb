@@ -18,7 +18,9 @@ class ProjectsController < ApplicationController
   #   - <tt>GET /projects/1</tt>
   def show
     #@project_phases = ProjectPhasesController.getProjectPhases(params[:id])
-    @project = Project.joins(:lifecycle).find(params[:id])
+    @project = Project.joins(:lifecycle, {
+        :project_phases => [:lifecycle_phase]
+    }).find(params[:id])
   end
 
   # This function accept a json string as parameters for a new project and attempt to create
