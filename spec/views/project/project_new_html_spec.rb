@@ -33,8 +33,8 @@ describe 'New Project' do
     expect(page).to have_selector('select#project_lifecycle_id')
   end
 
-  it "should have button Submit" do
-    expect(page).to have_button('Submit')
+  it "should have button Create" do
+    expect(page).to have_button('Create')
   end
 
   it "should have a form where post action calls /projects/create" do

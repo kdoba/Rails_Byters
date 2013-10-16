@@ -34,7 +34,7 @@ describe 'Project Overview' do
   end
 
   it "should have buttons for Save, Cancel, and Delete actions " do
-    expect(page).to have_link('Submit')
+    expect(page).to have_link('Save')
     expect(page).to have_link('Back')
     expect(page).to have_link('Delete')
   end
@@ -59,8 +59,9 @@ describe 'Project Overview' do
   end
 
   it "should have correct phase name and estimates in the phase table" do
+    lifecyclePhases = LifecyclePhase.find_all_by_lifecycle_id(@project.lifecycle_id)
     @project.project_phases.each_with_index do |phase, index|
-      expect(page.find('#phase_table tbody tr#row_'+index.to_s+' td.name')).to have_content(phase.name)
+      expect(page.find('#phase_table tbody tr#row_'+index.to_s+' td.name')).to have_content(lifecyclePhases[index].name)
       expect(page.find('#phase_table tbody tr#row_'+index.to_s+' td.estimates')).to have_content(100)
     end
   end

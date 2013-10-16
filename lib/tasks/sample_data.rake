@@ -37,10 +37,6 @@ namespace :db do
         FactoryGirl.create(:project, name: "Project"+n.to_s,
                            description: "Great projects"+n.to_s,
                            lifecycle_id: n % @lifecycleCount + 1)
-
-        @lifecycleCount.times do |m|
-          FactoryGirl.create(:project_phase, :lifecycle_phase_id => m, :project_id => n+1)
-        end
       end
     end
 
