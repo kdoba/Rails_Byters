@@ -7,5 +7,6 @@ class ProjectPhasesController < ApplicationController
 
   def show
     @project_phase = ProjectPhase.find(params[:id])
+    @project_phase_deliverables = ProjectPhaseDeliverable.find_all_by_project_phase_id(@project_phase.id)
   end
 end

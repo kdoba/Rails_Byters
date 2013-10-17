@@ -15,8 +15,22 @@
       <div class="large-12 columns">
         <table id="deliverable_table">
           <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Complexity</th>
+            <th>Size</th>
+            <th>Unit</th>
+          </tr>
           </thead>
           <tbody>
+          <tr id="row_1">
+            <td class="name"><%= @project_phase_deliverables[0].name %></td>
+            <td class="type"><%= @project_phase_deliverables[0].deliverable_type_id %></td>
+            <td class="complexity"><%= @project_phase_deliverables[0].complexity_id %></td>
+            <td class="size"><%= @project_phase_deliverables[0].size %></td>
+            <td class="unit"><%= @project_phase_deliverables[0].uom_id %></td>
+          </tr>
           </tbody>
         </table>
       </div>

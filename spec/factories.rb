@@ -12,6 +12,18 @@ FactoryGirl.define do
     project_id 1
   end
 
+  factory :project_phase_deliverable, class: ProjectPhaseDeliverable do
+    project_phase_id 1
+    name "First Deliverable"
+    description "yay"
+    uom_id 1
+    size 1
+    rate 1.0
+    complexity_id 1
+    deliverable_type_id 1
+  end
+
+
   factory :lifecycle, class: Lifecycle do
     name "Waterfall"
     description "Cool Lifecycle"
