@@ -3,8 +3,9 @@ require 'spec_helper'
 
 describe 'Project Overview' do
 
-  before :all do
-    @project = FactoryGirl.create(:project, :lifecycle_id => 1)
+  before do
+    FactoryGirl.create(:project, :name => "Dummy", :lifecycle_id => 1)
+    @project = FactoryGirl.create(:project, :name => "Dummy 2", :lifecycle_id => 2)
   end
 
   before :each do
@@ -60,6 +61,11 @@ describe 'Project Overview' do
   it "should have a back button that redirects to project index page" do
     click_link('Back')
     current_path.should eq "/projects"
+  end
+
+  it "should have a link in the name column in Project Phase page" do
+    page.find("#row_0").find("a").click
+    current_path.should == "/project_phases/" + @project.project_phases.first.id.to_s
   end
 
 end

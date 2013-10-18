@@ -34,9 +34,20 @@ namespace :db do
     if Rails.env.development?
       10.times do |n|
 
-        FactoryGirl.create(:project, name: "Project"+n.to_s,
-                           description: "Great projects"+n.to_s,
-                           lifecycle_id: n % @lifecycleCount + 1)
+        @project = FactoryGirl.create(:project, name: "Project"+n.to_s,
+                                      description: "Great projects"+n.to_s,
+                                      lifecycle_id: n % @lifecycleCount + 1)
+
+        @project_phases = ProjectPhase.find_all_by_project_id(@project.id)
+        @project_phases.each do |project_phase|
+          #create some dummy deliverables for each project phase
+          2.times do |index|
+            FactoryGirl.create(:project_phase_deliverable,
+                               name: "Deliverable " + (index + 1).to_s,
+                               project_phase_id: project_phase.id)
+          end
+        end
+
       end
     end
 

@@ -24,13 +24,15 @@
           </tr>
           </thead>
           <tbody>
-          <tr id="row_1">
-            <td class="name"><%= @project_phase_deliverables[0].name %></td>
-            <td class="type"><%= @project_phase_deliverables[0].deliverable_type_id %></td>
-            <td class="complexity"><%= @project_phase_deliverables[0].complexity_id %></td>
-            <td class="size"><%= @project_phase_deliverables[0].size %></td>
-            <td class="unit"><%= @project_phase_deliverables[0].uom_id %></td>
-          </tr>
+          <% @project_phase_deliverables.each_with_index do |deliverable, index| %>
+              <tr id="row_<%= index + 1 %>">
+                <td class="name"><%= deliverable.name %></td>
+                <td class="type"><%= deliverable.deliverable_type_id %></td>
+                <td class="complexity"><%= deliverable.complexity_id %></td>
+                <td class="size"><%= deliverable.size %></td>
+                <td class="unit"><%= deliverable.uom_id %></td>
+              </tr>
+          <% end %>
           </tbody>
         </table>
       </div>
@@ -39,7 +41,7 @@
     <div class="row">
       <div class="large-4 large-offset-8 columns">
         <a href="#" class="tiny button" name="New Deliverable" value="New Deliverable">New Deliverable</a>
-        <a href="#" class="tiny button" name="Back" value="Back">Back</a>
+        <a href="/projects/<%= @project_phase.project_id %>" class="tiny button" name="Back" value="Back">Back</a>
       </div>
     </div>
   </form>

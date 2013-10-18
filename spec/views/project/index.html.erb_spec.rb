@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "projects/index.html.erb" do
 
-  before :all do
+  before do
 
     @lifecycleCount = Lifecycle.count
     2.times do |n|
@@ -10,6 +10,7 @@ describe "projects/index.html.erb" do
                       description: "Great projects"+n.to_s,
                       lifecycle_id: n % @lifecycleCount + 1)
     end
+
   end
 
   before :each do
