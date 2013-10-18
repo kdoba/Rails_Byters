@@ -13,6 +13,10 @@ PET::Application.routes.draw do
   # :project_phase_deliverables
   get 'project_phase_deliverable/:id'     => 'project_phase_deliverable#show',  as: 'project_phase_deliverable'
   get 'project_phase_deliverable/new'     => 'project_phase_deliverable#new',   as: 'new_project_phase_deliverable'
+  post 'project_phase_deliverable/create' => 'project_phase_deliverable#create',as: 'create_project_phase_deliverable'
+
+
+  #resources :projects
 
   #get 'projects/:id/project_phases' => 'projects'
 
