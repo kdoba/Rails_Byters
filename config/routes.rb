@@ -1,16 +1,18 @@
 PET::Application.routes.draw do
 
-  #resources :projects
+  # :projects
+  get  "projects/index"
+  get  'projects'                         => 'projects#index',                  as: 'projects_index'
+  get  'projects/new'                     => 'projects#new',                    as: 'new_project'
+  get  'projects/:id'                     => 'projects#show',                   as: 'project'
+  post 'projects/create'                  => 'projects#create',                 as: 'projects'
 
-  get "projects/index"
-  get 'projects'        => 'projects#index',      as: 'projects_index'
-  get 'projects/new'    => 'projects#new',        as: 'new_project'
-  get 'projects/:id'    => 'projects#show',       as: 'project'
-  post 'projects/create'       => 'projects#create',     as: 'projects'
+  # :project_phases
+  get 'project_phases/:id'                => 'project_phases#show',             as: 'project_phase'
 
-
-  get 'project_phases/:id'    => 'project_phases#show',       as: 'project_phase'
-  get 'project_phase_deliverables/new'    => 'project_phase_deliverables#new',        as: 'new_project_phase_deliverable'
+  # :project_phase_deliverables
+  get 'project_phase_deliverable/:id'     => 'project_phase_deliverable#show',  as: 'project_phase_deliverable'
+  get 'project_phase_deliverable/new'     => 'project_phase_deliverable#new',   as: 'new_project_phase_deliverable'
 
   #get 'projects/:id/project_phases' => 'projects'
 
