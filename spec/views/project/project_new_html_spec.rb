@@ -6,48 +6,39 @@ describe 'New Project' do
     visit new_project_path
   end
 
-  it "should have a title called Create New Project" do
-    expect(page).to have_title('Create New Project')
-  end
+  subject { page }
 
-  it "should have a heading called Create New Project" do
-    page.find('#page_header').text.should eq("Create New Project")
-  end
+  it "should have all required view elements" do
+    should have_title('Create New Project')
+    find('#page_header').text.should eq("Create New Project")
 
-  it "should have a fieldset with empty legend" do
-    page.should have_selector('fieldset')
-  end
+    should have_selector('fieldset')
 
-  it "should have labels for Name, description, and lifecycle" do
+    #test form labels
     @label_names = ['Name', 'Description', 'Lifecycle']
-    page.all('.project_field_label').should_not be_empty
-    page.all('.project_field_label').count.should == @label_names.count
-    page.all('.project_field_label').each_with_index { |element, index|
+    project_field_labels = subject.all('.project_field_label')
+    project_field_labels.should_not be_empty
+    project_field_labels.count.should eq @label_names.count
+    project_field_labels.each_with_index { |element, index|
       element.should have_content(@label_names[index])
     }
-  end
 
-  it "should have input fields for project name, description, and lifecycle " do
-    expect(page).to have_selector('input#project_name')
-    expect(page).to have_selector('textarea#project_description')
-    expect(page).to have_selector('select#project_lifecycle_id')
-  end
+    #test input fields
+    should have_selector('input#project_name')
+    should have_selector('textarea#project_description')
+    should have_selector('select#project_lifecycle_id')
 
-  it "should have button Create" do
-    expect(page).to have_button('Create')
-  end
+    #test button
+    should have_link('Cancel')
+    should have_button('Create')
+    find("form#new_project").native.attributes["action"].to_s.should == "/projects/create"
 
-  it "should have a form where post action calls /projects/create" do
-    page.find("form#new_project").native.attributes["action"].to_s.should == "/projects/create"
-  end
-
-  it "should have all lifecycle names in the lifecycle dropdown" do
+    #test lifecycle names dropdown
     lifecycleNames = Lifecycle.all.map {|lifecycle| lifecycle.name}
     page.should have_select("project_lifecycle_id", :options => lifecycleNames)
   end
 
-  it "should have a cancel button that redirects to project index page" do
-    page.should have_link('Cancel')
+  it "when click on cancel button, redirect to project index page" do
     click_link('Cancel')
     current_path.should eq "/projects"
   end
