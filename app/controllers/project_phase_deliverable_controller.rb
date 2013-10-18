@@ -1,0 +1,2 @@
+class ProjectPhaseDeliverableController < ApplicationController
+end

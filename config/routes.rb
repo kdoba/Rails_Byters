@@ -10,7 +10,7 @@ PET::Application.routes.draw do
 
 
   get 'project_phases/:id'    => 'project_phases#show',       as: 'project_phase'
-
+  get 'project_phase_deliverables/new'    => 'project_phase_deliverables#new',        as: 'new_project_phase_deliverable'
 
   #get 'projects/:id/project_phases' => 'projects'
 
