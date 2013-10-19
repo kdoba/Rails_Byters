@@ -19,9 +19,8 @@ FactoryGirl.define do
     uom_id 1
     size 1
     rate 1.0
-    complexity "Easy"
+    complexity_id 1
     deliverable_type_id 1
-    effort 1
   end
 
 

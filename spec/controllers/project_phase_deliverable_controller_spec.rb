@@ -53,8 +53,7 @@ describe ProjectPhaseDeliverableController do
         :project_phase_id => @projectPhaseId,
         :size => 1,
         :rate => 1.0,
-        :complexity => "Easy",
-        :effort => 1,
+        :complexity_id => 1,
         :deliverable_type_id => 1}}}.to change{ProjectPhaseDeliverable.count}.by(1)
 
       assert_redirected_to 'project_phases/' + @projectPhaseId.to_s

@@ -30,14 +30,13 @@ ActiveRecord::Schema.define(:version => 20131016034941) do
   end
 
   create_table "project_phase_deliverables", :force => true do |t|
-    t.integer  "project_phase_id",    :null => false
-    t.string   "name",                :null => false
+    t.integer  "project_phase_id"
+    t.string   "name"
     t.string   "description"
-    t.integer  "uom_id",              :null => false
-    t.decimal  "size"
+    t.integer  "uom_id"
+    t.integer  "size"
     t.decimal  "rate"
-    t.decimal  "effort"
-    t.string   "complexity",          :null => false
+    t.integer  "complexity_id"
     t.integer  "deliverable_type_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false

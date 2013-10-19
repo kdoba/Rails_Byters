@@ -37,7 +37,7 @@ describe 'Project Phase Overview' do
       within subject.find('#deliverable_table tbody tr#row_' + (index + 1).to_s) do
         find('td.name').should have_content(deliverable.name)
         find('td.type').should have_content(deliverable.deliverable_type_id)
-        find('td.complexity').should have_content(deliverable.complexity)
+        find('td.complexity').should have_content(deliverable.complexity_id)
         find('td.size').should have_content(deliverable.size)
         find('td.unit').should have_content(deliverable.uom_id)
 
