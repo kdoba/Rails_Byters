@@ -27,6 +27,6 @@ describe 'Project Phase Deliverable Show page' do
     #test input fields
     should have_selector('input#project_phase_deliverable_name')
     should have_selector('textarea#project_phase_deliverable_description')
-    should have_selector('select#project_phase_deliverable_complexity_id')
+    should have_selector('select#project_phase_deliverable_complexity')
   end
 end
