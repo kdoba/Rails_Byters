@@ -15,7 +15,7 @@ describe ProjectPhaseDeliverable do
       it {should respond_to :uom_id}
       it {should respond_to :size}
       it {should respond_to :rate}
-      it {should respond_to :complexity}
+      it {should respond_to :complexity_id}
       it {should respond_to :deliverable_type_id}
       it {should respond_to :effort}
     end
@@ -26,7 +26,7 @@ describe ProjectPhaseDeliverable do
       it {should validate_presence_of(:uom_id)}
       it {should validate_presence_of(:size)}
       it {should validate_presence_of(:rate)}
-      it {should validate_presence_of(:complexity)}
+      it {should validate_presence_of(:complexity_id)}
       it {should validate_presence_of(:deliverable_type_id)}
       it {should validate_presence_of(:effort)}
     end

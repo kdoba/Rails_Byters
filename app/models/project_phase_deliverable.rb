@@ -1,6 +1,6 @@
 class ProjectPhaseDeliverable < ActiveRecord::Base
   # To change this template use File | Settings | File Templates.
-  attr_accessible :project_phase_id, :name, :description, :uom_id, :size, :rate, :complexity, :deliverable_type_id, :effort
+  attr_accessible :project_phase_id, :name, :description, :uom_id, :size, :rate, :complexity_id, :deliverable_type_id, :effort
 
   belongs_to :project_phase
 
@@ -9,8 +9,12 @@ class ProjectPhaseDeliverable < ActiveRecord::Base
   validates :uom_id,              presence:true
   validates :size,                presence:true
   validates :rate,                presence:true
-  validates :complexity,          presence:true
+  validates :complexity_id,       presence:true
   validates :deliverable_type_id, presence:true
   validates :effort,              presence:true
 
+  #def complexity_string
+  #  @complexities = ["", "", ""]
+  #  @complexities[complexity_id]
+  #end
 end

@@ -30,8 +30,8 @@
       </div>
       <div class="row">
         <div class="large-12 columns">
-          <%= f.label :complexity, 'Complexity'.html_safe, class: "project_phase_deliverable_field_label" %>
-          <%= f.select :complexity, @complexities.collect{ |l, index| [l, index] } %>
+          <%= f.label :complexity_id, 'Complexity'.html_safe, class: "project_phase_deliverable_field_label" %>
+          <%= f.select :complexity_id, @complexities.collect{ |l, index| [l, index] } %>
         </div>
       </div>
       <div class="row">

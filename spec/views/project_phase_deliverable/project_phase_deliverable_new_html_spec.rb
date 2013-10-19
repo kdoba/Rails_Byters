@@ -27,7 +27,7 @@ describe "New Project Phase Deliverable" do
     should have_selector('textarea#project_phase_deliverable_description')
     should have_selector('select#project_phase_deliverable_deliverable_type_id')
     should have_selector('select#project_phase_deliverable_uom_id')
-    should have_selector('select#project_phase_deliverable_complexity')
+    should have_selector('select#project_phase_deliverable_complexity_id')
     should have_selector('input#project_phase_deliverable_size')
     should have_selector('input#project_phase_deliverable_rate')
     should have_selector('input#project_phase_deliverable_project_phase_id')

@@ -53,7 +53,7 @@ describe ProjectPhaseDeliverableController do
         :project_phase_id => @projectPhaseId,
         :size => 1,
         :rate => 1.0,
-        :complexity => "Easy",
+        :complexity_id => 1,
         :effort => 1,
         :deliverable_type_id => 1}}}.to change{ProjectPhaseDeliverable.count}.by(1)
 

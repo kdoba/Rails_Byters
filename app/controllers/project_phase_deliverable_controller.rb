@@ -20,7 +20,7 @@ class ProjectPhaseDeliverableController < ApplicationController
       uom_id: params[:project_phase_deliverable][:uom_id],
       size: params[:project_phase_deliverable][:size],
       rate: params[:project_phase_deliverable][:rate],
-      complexity: params[:project_phase_deliverable][:complexity],
+      complexity_id: params[:project_phase_deliverable][:complexity_id],
       deliverable_type_id: params[:project_phase_deliverable][:deliverable_type_id],
       effort: params[:project_phase_deliverable][:effort]
     )

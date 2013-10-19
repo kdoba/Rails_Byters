@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131019231056) do
+ActiveRecord::Schema.define(:version => 20131019232724) do
 
   create_table "lifecycle_phases", :force => true do |t|
     t.string   "name"
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(:version => 20131019231056) do
     t.integer  "deliverable_type_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
-    t.string   "complexity"
     t.decimal  "effort"
+    t.integer  "complexity_id"
   end
 
   create_table "project_phases", :force => true do |t|
