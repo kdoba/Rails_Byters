@@ -1,0 +1,66 @@
+<% provide(:title, "Create New Deliverable") %>
+
+<h3 id="page_header">Create New Deliverable</h3>
+
+<fieldset>
+  <%= form_for(@new_project_phase_deliverable, :url => create_project_phase_deliverable_path, :method => :post) do |f| %>
+      <div class="row">
+        <div class="large-12 columns">
+          <%= f.label :name, 'Name <small>required</small>'.html_safe, class: "project_phase_deliverable_field_label" %>
+          <%= f.text_field :name %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <%= f.label :description, 'Description'.html_safe, class: "project_phase_deliverable_field_label" %>
+          <%= f.text_area :description %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <%= f.label :deliverable_type_id, 'Deliverable Type'.html_safe, class: "project_phase_deliverable_field_label" %>
+          <%= f.select :deliverable_type_id, @deliverable_types.collect{ |l, index| [l, index] } %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <%= f.label :uom_id, 'Unit of Measurement'.html_safe, class: "project_phase_deliverable_field_label" %>
+          <%= f.select :uom_id, @units_of_measurement.collect{ |l, index| [l, index] } %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <%= f.label :complexity, 'Complexity'.html_safe, class: "project_phase_deliverable_field_label" %>
+          <%= f.select :complexity, @complexities.collect{ |l, index| [l, index] } %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <%= f.label :size, 'Size'.html_safe, class: "project_phase_deliverable_field_label" %>
+          <%= f.text_field :size %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <%= f.label :rate, 'Rate'.html_safe, class: "project_phase_deliverable_field_label" %>
+          <%= f.text_field :rate %>
+        </div>
+      </div>
+
+      <%= f.hidden_field :project_phase_id, :value => @project_phase_id %>
+
+      <!-- Cancel and Create buttons -->
+      <div class="row">
+        <div class="large-3 large-offset-9 columns">
+          <input class="tiny button" type="submit" name="Submit" value="Create">
+          <a class="tiny button" href="/projects">Cancel</a>
+        </div>
+      </div>
+
+          <!--< % if @new_project.errors.any? %>-->
+              <!--< % @new_project.errors.full_messages.each do |msg| %>-->
+                  <!--<small class="error">< %= msg %></small>-->
+              <!--< % end %>-->
+          <!--< % end %>-->
+  <% end %>
+</fieldset>

@@ -55,4 +55,10 @@ describe 'Project Phase Overview' do
     click_link('Back')
     current_path.should eq "/projects/1"
   end
+
+  it "when click on new deliverable button, redirect to new project deliverable page with correct param project_phase_id" do
+    click_link('New Deliverable')
+    uri = URI.parse(current_url)
+    "#{uri.path}?#{uri.query}".should eq new_project_phase_deliverable_path(:project_phase_id => @project_phase.id.to_s)
+  end
 end
