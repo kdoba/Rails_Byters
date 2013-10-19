@@ -11,7 +11,7 @@ describe ProjectPhaseDeliverableController do
       FactoryGirl.create(:project_phase_deliverable, :project_phase_id => @project_phase.id)
       @index = 1
       get "show", {:id => @index}
-      @deliverable = assigns(:project_phase_deliverable)
+      @deliverable = assigns(:deliverable)
     end
 
     it "returns http success" do
