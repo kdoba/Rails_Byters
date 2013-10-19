@@ -44,18 +44,19 @@ describe ProjectPhaseDeliverableController do
       should respond_to :create
     end
 
-    #it "should create a new project phase deliverable" do
-    #  expect {post "create", {:project_phase_deliverable => {
-    #    :name => "Deliverable 1",
-    #    :description =>"Tomato Project",
-    #    :uom_id => 1,
-    #    :project_phase_id => 1,
-    #    :size => 1,
-    #    :rate => 1.0,
-    #    :complexity_id => 1,
-    #    :deliverable_type_id => 1}}}.to change{ProjectPhaseDeliverable.count}.by(1)
-    #end
+    it "should create a new project phase deliverable" do
+      @projectPhaseId = 1
+      expect {post "create", {:project_phase_deliverable => {
+        :name => "Deliverable 1",
+        :description =>"Tomato Project",
+        :uom_id => 1,
+        :project_phase_id => @projectPhaseId,
+        :size => 1,
+        :rate => 1.0,
+        :complexity_id => 1,
+        :deliverable_type_id => 1}}}.to change{ProjectPhaseDeliverable.count}.by(1)
 
-    #assert_redirected_to 'project_phases/:'
+      assert_redirected_to 'project_phases/' + @projectPhaseId.to_s
+    end
   end
 end
