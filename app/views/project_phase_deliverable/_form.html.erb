@@ -1,3 +1,8 @@
+<% if @deliverable.errors.any? %>
+    <% @deliverable.errors.full_messages.each do |msg| %>
+        <small class="error"><%= msg %></small>
+    <% end %>
+<% end %>
 <div class="row">
   <div class="large-12 columns">
     <%= f.label :name, 'Name <small>required</small>'.html_safe, class: "project_phase_deliverable_field_label" %>
@@ -12,32 +17,38 @@
 </div>
 <div class="row">
   <div class="large-12 columns">
-    <%= f.label :deliverable_type_id, 'Deliverable Type'.html_safe, class: "project_phase_deliverable_field_label" %>
-    <%= f.select :deliverable_type_id, @deliverable_types.collect{ |index, value| [value, index] } %>
+    <%= f.label :deliverable_type_id, 'Deliverable Type <small>required</small>'.html_safe, class: "project_phase_deliverable_field_label" %>
+    <%= f.select :deliverable_type_id, ProjectPhaseDeliverable.deliverable_types.collect{ |index, value| [value, index] } %>
   </div>
 </div>
 <div class="row">
   <div class="large-12 columns">
-    <%= f.label :uom_id, 'Unit of Measurement'.html_safe, class: "project_phase_deliverable_field_label" %>
-    <%= f.select :uom_id, @units_of_measurement.collect{ |index, value| [value, index] } %>
+    <%= f.label :uom_id, 'Unit of Measurement <small>required</small>'.html_safe, class: "project_phase_deliverable_field_label" %>
+    <%= f.select :uom_id, ProjectPhaseDeliverable.units_of_measurement.collect{ |index, value| [value, index] } %>
   </div>
 </div>
 <div class="row">
   <div class="large-12 columns">
-    <%= f.label :complexity_id, 'Complexity'.html_safe, class: "project_phase_deliverable_field_label" %>
-    <%= f.select :complexity_id, @complexities.collect{ |index, value| [value, index] } %>
+    <%= f.label :complexity_id, 'Complexity <small>required</small>'.html_safe, class: "project_phase_deliverable_field_label" %>
+    <%= f.select :complexity_id, ProjectPhaseDeliverable.complexities.collect{ |index, value| [value, index] } %>
   </div>
 </div>
 <div class="row">
   <div class="large-12 columns">
-    <%= f.label :size, 'Size'.html_safe, class: "project_phase_deliverable_field_label" %>
+    <%= f.label :size, 'Size <small>required</small>'.html_safe, class: "project_phase_deliverable_field_label" %>
     <%= f.text_field :size %>
   </div>
 </div>
 <div class="row">
   <div class="large-12 columns">
-    <%= f.label :rate, 'Rate'.html_safe, class: "project_phase_deliverable_field_label" %>
+    <%= f.label :rate, 'Rate <small>required</small>'.html_safe, class: "project_phase_deliverable_field_label" %>
     <%= f.text_field :rate %>
+  </div>
+</div>
+<div class="row">
+  <div class="large-12 columns">
+    <%= f.label :effort, 'Effort <small>required</small>'.html_safe, class: "project_phase_deliverable_field_label" %>
+    <%= f.text_field :effort %>
   </div>
 </div>
 

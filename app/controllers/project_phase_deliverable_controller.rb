@@ -4,24 +4,23 @@ class ProjectPhaseDeliverableController < ApplicationController
   def show
     @deliverable          = ProjectPhaseDeliverable.find(params[:id])
     @project_phase_id     = @deliverable.project_phase_id
-    @complexities         = ProjectPhaseDeliverable.complexities
-
-    @deliverable_types    = ProjectPhaseDeliverable.deliverable_types
-    @units_of_measurement = ProjectPhaseDeliverable.units_of_measurement
   end
 
   def new
+    if params[:project_phase_id].nil? || params[:project_phase_id].empty?
+      flash[:alert] = "Please specify project phase id in order to create new deliverable."
+      redirect_to '/projects'
+    end
     @deliverable          = ProjectPhaseDeliverable.new
     @project_phase_id     = params[:project_phase_id]
-    @complexities         = ProjectPhaseDeliverable.complexities
-
-    @deliverable_types    = ProjectPhaseDeliverable.deliverable_types
-    @units_of_measurement = ProjectPhaseDeliverable.units_of_measurement
   end
 
   def create
-    @new_project_phase_deliverable = ProjectPhaseDeliverable.new(
-      project_phase_id: params[:project_phase_deliverable][:project_phase_id],
+
+    @project_phase_id     = params[:project_phase_deliverable][:project_phase_id]
+
+    @deliverable = ProjectPhaseDeliverable.new(
+      project_phase_id:  @project_phase_id,
       name: params[:project_phase_deliverable][:name],
       description: params[:project_phase_deliverable][:description],
       uom_id: params[:project_phase_deliverable][:uom_id],
@@ -29,12 +28,15 @@ class ProjectPhaseDeliverableController < ApplicationController
       rate: params[:project_phase_deliverable][:rate],
       complexity_id: params[:project_phase_deliverable][:complexity_id],
       deliverable_type_id: params[:project_phase_deliverable][:deliverable_type_id],
-      effort: 0 #dummy data since the model doesn't accept nil effort
+      effort:  params[:project_phase_deliverable][:effort]
     )
 
-    if @new_project_phase_deliverable && @new_project_phase_deliverable.save
+    if @deliverable && @deliverable.save
       flash[:success] = "New deliverable was successfully created"
-      redirect_to '/project_phases/' + @new_project_phase_deliverable.project_phase_id.to_s
+      redirect_to '/project_phases/' + @deliverable.project_phase_id.to_s
+    else
+      flash[:alert] = "Please fix the following errors."
+      render :new
     end
   end
 end

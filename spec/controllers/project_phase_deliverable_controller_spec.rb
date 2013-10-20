@@ -12,7 +12,6 @@ describe ProjectPhaseDeliverableController do
       @index = 1
       get "show", {:id => @index}
       @deliverable  = assigns(:deliverable)
-      @complexities = assigns(:complexities)
     end
 
     it "returns http success" do
@@ -26,19 +25,17 @@ describe ProjectPhaseDeliverableController do
     it "should have a project phase deliverable" do
       @deliverable.should_not be_nil
     end
-
-    it "should have a set of complexities" do
-      @complexities.should_not be_nil
-    end
-
   end
 
   context "GET 'new'" do
-    before do
+    it "should redirect to the home page with the error message if project phase id is not specified" do
       get 'new'
+      response.should redirect_to "/projects"
+      flash[:alert].should_not be_empty
     end
 
     it "returns http success" do
+      get "new", {:project_phase_id => 1}
       response.should be_success
     end
   end
@@ -59,10 +56,11 @@ describe ProjectPhaseDeliverableController do
             :project_phase_id => @projectPhaseId,
             :size => 1,
             :rate => 1.0,
+            :effort => 1.0,
             :complexity_id => 1,
             :deliverable_type_id => 1}}
 
-        @new_deliverable = assigns(:new_project_phase_deliverable)
+        @new_deliverable = assigns(:deliverable)
       end
 
       it "should redirect to project phase overview page" do
@@ -78,4 +76,21 @@ describe ProjectPhaseDeliverableController do
       end
     end
   end
+
+  context "Unsuccessfully create a new deliverable" do
+    before do
+      post "create", {:project_phase_deliverable => {:description =>"Tomato deliverable", :project_phase_id=> @project_phase.id}}
+      @deliverable = assigns(:deliverable)
+    end
+
+    #TODO: make this more detailed error message!!!
+    it "should render new template with error message" do
+      response.should render_template("new")
+      flash[:alert].should_not be_nil
+      flash[:alert].should_not be_empty
+    end
+
+  #TODO check behavior if  project_phase_id is not present
+  end
 end
+

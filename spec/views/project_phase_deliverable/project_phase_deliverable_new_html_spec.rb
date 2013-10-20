@@ -15,7 +15,7 @@ describe "New Project Phase Deliverable" do
     should have_selector('fieldset')
 
     #test form labels
-    @label_names = ['Name', 'Description', 'Type', 'Unit', 'Complexity', 'Size', 'Rate']
+    @label_names = ['Name', 'Description', 'Type', 'Unit', 'Complexity', 'Size', 'Rate', 'Effort']
     deliverable_field_labels = subject.all('.project_phase_deliverable_field_label')
     deliverable_field_labels.should_not be_empty
     deliverable_field_labels.count.should eq @label_names.count
@@ -31,6 +31,7 @@ describe "New Project Phase Deliverable" do
     should have_selector('select#project_phase_deliverable_complexity_id')
     should have_selector('input#project_phase_deliverable_size')
     should have_selector('input#project_phase_deliverable_rate')
+    should have_selector('input#project_phase_deliverable_effort')
     should have_selector('input#project_phase_deliverable_project_phase_id')
 
     #test button
