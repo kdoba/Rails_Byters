@@ -19,13 +19,13 @@
       <div class="row">
         <div class="large-12 columns">
           <%= f.label :deliverable_type_id, 'Deliverable Type'.html_safe, class: "project_phase_deliverable_field_label" %>
-          <%= f.select :deliverable_type_id, @deliverable_types.collect{ |l, index| [l, index] } %>
+          <%= f.select :deliverable_type_id, @deliverable_types.collect{ |index, value| [value, index] } %>
         </div>
       </div>
       <div class="row">
         <div class="large-12 columns">
           <%= f.label :uom_id, 'Unit of Measurement'.html_safe, class: "project_phase_deliverable_field_label" %>
-          <%= f.select :uom_id, @units_of_measurement.collect{ |l, index| [l, index] } %>
+          <%= f.select :uom_id, @units_of_measurement.collect{ |index, value| [value, index] } %>
         </div>
       </div>
       <div class="row">
@@ -53,7 +53,7 @@
       <div class="row">
         <div class="large-3 large-offset-9 columns">
           <input class="tiny button" type="submit" name="Submit" value="Create">
-          <a class="tiny button" href="/projects">Cancel</a>
+          <a class="tiny button" href="/project_phases/<%= @project_phase_id %>">Cancel</a>
         </div>
       </div>
 

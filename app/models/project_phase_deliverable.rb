@@ -15,12 +15,34 @@ class ProjectPhaseDeliverable < ActiveRecord::Base
 
   @@complexities = {1 => "Small", 2 => "Medium", 3 => "Large"}
 
+  # add some dummy data for testing
+  @@deliverable_types = {1 => "Type 1", 2 => "Type 2", 3 => "Type 3"}
+  @@units_of_measurement = {1 => "Words", 2 => "Pages", 3 => "Story Points", 4 => "Lines"}
+
   def self.complexities
     @@complexities
   end
 
   def complexity_string
     @@complexities[complexity_id]
+  end
+
+
+  def self.deliverable_types
+    @@deliverable_types
+  end
+
+  def deliverable_type_string
+    @@deliverable_types[deliverable_type_id]
+  end
+
+
+  def self.units_of_measurement
+    @@units_of_measurement
+  end
+
+  def uom_string
+    @@units_of_measurement[uom_id]
   end
 
 end

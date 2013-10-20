@@ -44,20 +44,33 @@ describe ProjectPhaseDeliverableController do
       should respond_to :create
     end
 
-    it "should create a new project phase deliverable" do
-      @projectPhaseId = 1
-      expect {post "create", {:project_phase_deliverable => {
-        :name => "Deliverable 1",
-        :description =>"Tomato Project",
-        :uom_id => 1,
-        :project_phase_id => @projectPhaseId,
-        :size => 1,
-        :rate => 1.0,
-        :complexity_id => 1,
-        :effort => 1,
-        :deliverable_type_id => 1}}}.to change{ProjectPhaseDeliverable.count}.by(1)
+    context "Successfully create a new project deliverable" do
+      before do
+        @projectPhaseId = 1
+        post "create", {:project_phase_deliverable => {
+            :name => "Deliverable 1",
+            :description =>"Tomato Project",
+            :uom_id => 1,
+            :project_phase_id => @projectPhaseId,
+            :size => 1,
+            :rate => 1.0,
+            :complexity_id => 1,
+            :deliverable_type_id => 1}}
 
-      assert_redirected_to 'project_phases/' + @projectPhaseId.to_s
+        @new_deliverable = assigns(:new_project_phase_deliverable)
+      end
+
+      it "should redirect to project phase overview page" do
+        response.should redirect_to "/project_phases/" + @projectPhaseId.to_s
+      end
+
+      it "should persist the project deliverable" do
+        @new_deliverable.should be_persisted
+      end
+
+      it "should print success message" do
+        flash[:success].should_not be_empty
+      end
     end
   end
 end

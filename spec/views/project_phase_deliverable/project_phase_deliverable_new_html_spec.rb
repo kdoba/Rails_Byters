@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe "New Project Phase Deliverable" do
   before do
-    visit new_project_phase_deliverable_path
+    @project_phase = FactoryGirl.create(:project_phase)
+    visit new_project_phase_deliverable_path(project_phase_id: @project_phase.id)
   end
 
   subject { page }
@@ -37,6 +38,15 @@ describe "New Project Phase Deliverable" do
     should have_button('Create')
     find("form#new_project_phase_deliverable").native.attributes["action"].to_s.should == "/project_phase_deliverable/create"
 
+    #test deliverable type id dropdown
+    deliverables = ["Type 1", "Type 2", "Type 3"] #Lifecycle.all.map {|lifecycle| lifecycle.name}
+    page.should have_select("project_phase_deliverable_deliverable_type_id", :options => deliverables)
+
+  end
+
+  it "when click on cancel button, redirect to project index page" do
+    click_link('Cancel')
+    current_path.should eq "/project_phases/" + @project_phase.id.to_s
   end
 
 end

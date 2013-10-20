@@ -27,10 +27,10 @@
           <% @project_phase_deliverables.each_with_index do |deliverable, index| %>
               <tr id="row_<%= index + 1 %>">
                 <td class="name"><%= deliverable.name %></td>
-                <td class="type"><%= deliverable.deliverable_type_id %></td>
-                <td class="complexity"><%= deliverable.complexity_id %></td>
+                <td class="type"><%= deliverable.deliverable_type_string %></td>
+                <td class="complexity"><%= deliverable.complexity_string %></td>
                 <td class="size"><%= deliverable.size %></td>
-                <td class="unit"><%= deliverable.uom_id %></td>
+                <td class="unit"><%= deliverable.uom_string %></td>
               </tr>
           <% end %>
           </tbody>

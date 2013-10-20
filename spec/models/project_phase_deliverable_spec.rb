@@ -35,12 +35,21 @@ describe ProjectPhaseDeliverable do
       it {should belong_to :project_phase}
     end
 
-    context 'complexity_string method' do
-      it { should respond_to :complexity_string }
+    context 'complexity_string, deliverable_type_string, uom_string method' do
+
+      it {
+        should respond_to :complexity_string
+        should respond_to :deliverable_type_string
+        should respond_to :uom_string
+      }
+
       it "should returns the correct string based on complexity_id" do
-        @deliverable = ProjectPhaseDeliverable.new(complexity_id: 1)
+        @deliverable = ProjectPhaseDeliverable.new(complexity_id: 1, deliverable_type_id: 1, uom_id: 1)
         @deliverable.complexity_string.should eq ProjectPhaseDeliverable.complexities[1]
+        @deliverable.deliverable_type_string.should eq ProjectPhaseDeliverable.deliverable_types[1]
+        @deliverable.uom_string.should eq ProjectPhaseDeliverable.units_of_measurement[1]
       end
+
     end
 
   end

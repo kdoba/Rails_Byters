@@ -8,9 +8,8 @@ class ProjectPhaseDeliverableController < ApplicationController
     @project_phase_id = params[:project_phase_id]
     @complexities = ProjectPhaseDeliverable.complexities
 
-    # add some dummy data for testing
-    @deliverable_types = ["Type 1", "Type 2", "Type 3"]
-    @units_of_measurement = ["Words", "Pages", "Story Points", "Lines"]
+    @deliverable_types = ProjectPhaseDeliverable.deliverable_types
+    @units_of_measurement = ProjectPhaseDeliverable.units_of_measurement
   end
 
   def create
@@ -23,10 +22,12 @@ class ProjectPhaseDeliverableController < ApplicationController
       rate: params[:project_phase_deliverable][:rate],
       complexity_id: params[:project_phase_deliverable][:complexity_id],
       deliverable_type_id: params[:project_phase_deliverable][:deliverable_type_id],
-      effort: params[:project_phase_deliverable][:effort]
+      effort: 0 #dummy data since the model doesn't accept nil effort
     )
 
-    @new_project_phase_deliverable.save
-    redirect_to 'project_phases/1'
+    if @new_project_phase_deliverable && @new_project_phase_deliverable.save
+      flash[:success] = "New deliverable was successfully created"
+      redirect_to '/project_phases/' + @new_project_phase_deliverable.project_phase_id.to_s
+    end
   end
 end
