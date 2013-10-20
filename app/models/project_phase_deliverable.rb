@@ -13,8 +13,14 @@ class ProjectPhaseDeliverable < ActiveRecord::Base
   validates :deliverable_type_id, presence:true
   validates :effort,              presence:true
 
-  #def complexity_string
-  #  @complexities = ["", "", ""]
-  #  @complexities[complexity_id]
-  #end
+  @@complexities = {1 => "Small", 2 => "Medium", 3 => "Large"}
+
+  def self.complexities
+    @@complexities
+  end
+
+  def complexity_string
+    @@complexities[complexity_id]
+  end
+
 end

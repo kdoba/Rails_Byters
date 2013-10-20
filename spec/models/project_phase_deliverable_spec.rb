@@ -34,6 +34,15 @@ describe ProjectPhaseDeliverable do
     context 'Testing for models associations with other tables' do
       it {should belong_to :project_phase}
     end
+
+    context 'complexity_string method' do
+      it { should respond_to :complexity_string }
+      it "should returns the correct string based on complexity_id" do
+        @deliverable = ProjectPhaseDeliverable.new(complexity_id: 1)
+        @deliverable.complexity_string.should eq ProjectPhaseDeliverable.complexities[1]
+      end
+    end
+
   end
 
 end

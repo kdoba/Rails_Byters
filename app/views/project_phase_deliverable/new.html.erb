@@ -31,7 +31,7 @@
       <div class="row">
         <div class="large-12 columns">
           <%= f.label :complexity_id, 'Complexity'.html_safe, class: "project_phase_deliverable_field_label" %>
-          <%= f.select :complexity_id, @complexities.collect{ |l, index| [l, index] } %>
+          <%= f.select :complexity_id, @complexities.collect{ |index, value| [value, index] } %>
         </div>
       </div>
       <div class="row">

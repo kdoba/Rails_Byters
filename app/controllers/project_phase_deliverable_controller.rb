@@ -6,10 +6,11 @@ class ProjectPhaseDeliverableController < ApplicationController
   def new
     @new_project_phase_deliverable = ProjectPhaseDeliverable.new
     @project_phase_id = params[:project_phase_id]
+    @complexities = ProjectPhaseDeliverable.complexities
+
     # add some dummy data for testing
     @deliverable_types = ["Type 1", "Type 2", "Type 3"]
     @units_of_measurement = ["Words", "Pages", "Story Points", "Lines"]
-    @complexities = ["Small", "Medium", "Large"]
   end
 
   def create
