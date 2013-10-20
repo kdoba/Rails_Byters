@@ -35,7 +35,7 @@ describe 'Project Phase Overview' do
     # table content
     @project_phase_deliverables.each_with_index do |deliverable, index|
       within subject.find('#deliverable_table tbody tr#row_' + (index + 1).to_s) do
-        find('td.name').should have_content(deliverable.name)
+        find('td.name').should have_link(deliverable.name)
         find('td.type').should have_content(deliverable.deliverable_type_string)
         find('td.complexity').should have_content(deliverable.complexity_string)
         find('td.size').should have_content(deliverable.size)
@@ -49,6 +49,12 @@ describe 'Project Phase Overview' do
     should have_link('New Deliverable')
     should have_link('Back')
 
+  end
+
+  it "link in the name column in 'Deliverables' table should redirect to that deliverable page" do
+    @deliverable = @project_phase_deliverables.first
+    page.find("#row_1").find("a").click
+    current_path.should == "/project_phase_deliverable/" + @deliverable.id.to_s
   end
 
   it "when click on back button, redirect to project overview page" do
