@@ -40,7 +40,7 @@
 
     <div class="row">
       <div class="large-4 large-offset-8 columns">
-        <%= link_to "New Deliverable", new_project_phase_deliverable_path(project_phase_id: @project_phase.id) %>
+        <%= link_to "New Deliverable", new_project_phase_deliverable_path(project_phase_id: @project_phase.id), class: "tiny button" %>
         <!--a href="" class="tiny button" name="New Deliverable" value="New Deliverable">New Deliverable</a-->
         <a href="/projects/<%= @project_phase.project_id %>" class="tiny button" name="Back" value="Back">Back</a>
       </div>

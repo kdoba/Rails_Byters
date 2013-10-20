@@ -11,13 +11,13 @@ describe 'Project Phase Deliverable Show page' do
 
   subject { page }
 
-  it "has all required view elements" do
+  it "should have all required view elements" do
     should have_title("Edit Deliverable")
     subject.find('#page_header').should have_content("Edit " + @deliverable.name)
 
     # test form labels
-    @label_names = ['Name', 'Description', 'Complexity']
-    deliverable_field_labels = subject.all('.deliverable_field_label')
+    @label_names = ['Name', 'Description', 'Type', 'Unit', 'Complexity', 'Size', 'Rate']
+    deliverable_field_labels = subject.all('.project_phase_deliverable_field_label')
     deliverable_field_labels.should_not be_empty
     deliverable_field_labels.count.should eq @label_names.count
     deliverable_field_labels.each_with_index { |element, index|
@@ -27,6 +27,32 @@ describe 'Project Phase Deliverable Show page' do
     #test input fields
     should have_selector('input#project_phase_deliverable_name')
     should have_selector('textarea#project_phase_deliverable_description')
+    should have_selector('select#project_phase_deliverable_deliverable_type_id')
+    should have_selector('select#project_phase_deliverable_uom_id')
     should have_selector('select#project_phase_deliverable_complexity_id')
+    should have_selector('input#project_phase_deliverable_size')
+    should have_selector('input#project_phase_deliverable_rate')
+    should have_selector('input#project_phase_deliverable_project_phase_id')
+
+    #test button
+    should have_link('Cancel')
+    should have_button('Edit')
+    #find("form#new_project_phase_deliverable").native.attributes["action"].to_s.should == "/project_phase_deliverable/create"
+  end
+
+  it "should have values fetched from the database into the input fields" do
+    find('input#project_phase_deliverable_name').value.should eq "First Deliverable"
+    find('textarea#project_phase_deliverable_description').should have_text "yay"
+
+    types        = ProjectPhaseDeliverable.deliverable_types.collect{ |index, value| value }
+    uom          = ProjectPhaseDeliverable.units_of_measurement.collect{ |index, value| value }
+    complexities = ProjectPhaseDeliverable.complexities.collect{ |index, value| value }
+
+    should have_select("project_phase_deliverable_deliverable_type_id", :selected => "Type 1", :options => types)
+    should have_select("project_phase_deliverable_uom_id",              :selected => "Words",  :options => uom)
+    should have_select("project_phase_deliverable_complexity_id",       :selected => "Small",  :options => complexities)
+
+    find('input#project_phase_deliverable_size').value.should eq "1"
+    find('input#project_phase_deliverable_rate').value.should eq "1"
   end
 end

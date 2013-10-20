@@ -11,7 +11,8 @@ describe ProjectPhaseDeliverableController do
       FactoryGirl.create(:project_phase_deliverable, :project_phase_id => @project_phase.id)
       @index = 1
       get "show", {:id => @index}
-      @deliverable = assigns(:deliverable)
+      @deliverable  = assigns(:deliverable)
+      @complexities = assigns(:complexities)
     end
 
     it "returns http success" do
@@ -24,6 +25,10 @@ describe ProjectPhaseDeliverableController do
 
     it "should have a project phase deliverable" do
       @deliverable.should_not be_nil
+    end
+
+    it "should have a set of complexities" do
+      @complexities.should_not be_nil
     end
 
   end

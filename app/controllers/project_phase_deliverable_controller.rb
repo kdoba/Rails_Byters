@@ -1,14 +1,21 @@
 class ProjectPhaseDeliverableController < ApplicationController
+
+  # TODO: We should really refactor how we're calling globally used variables/resources
   def show
-    @deliverable = ProjectPhaseDeliverable.find(params[:id])
+    @deliverable          = ProjectPhaseDeliverable.find(params[:id])
+    @project_phase_id     = @deliverable.project_phase_id
+    @complexities         = ProjectPhaseDeliverable.complexities
+
+    @deliverable_types    = ProjectPhaseDeliverable.deliverable_types
+    @units_of_measurement = ProjectPhaseDeliverable.units_of_measurement
   end
 
   def new
-    @new_project_phase_deliverable = ProjectPhaseDeliverable.new
-    @project_phase_id = params[:project_phase_id]
-    @complexities = ProjectPhaseDeliverable.complexities
+    @deliverable          = ProjectPhaseDeliverable.new
+    @project_phase_id     = params[:project_phase_id]
+    @complexities         = ProjectPhaseDeliverable.complexities
 
-    @deliverable_types = ProjectPhaseDeliverable.deliverable_types
+    @deliverable_types    = ProjectPhaseDeliverable.deliverable_types
     @units_of_measurement = ProjectPhaseDeliverable.units_of_measurement
   end
 

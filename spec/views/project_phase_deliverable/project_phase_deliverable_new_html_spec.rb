@@ -16,10 +16,10 @@ describe "New Project Phase Deliverable" do
 
     #test form labels
     @label_names = ['Name', 'Description', 'Type', 'Unit', 'Complexity', 'Size', 'Rate']
-    project_field_labels = subject.all('.project_phase_deliverable_field_label')
-    project_field_labels.should_not be_empty
-    project_field_labels.count.should eq @label_names.count
-    project_field_labels.each_with_index { |element, index|
+    deliverable_field_labels = subject.all('.project_phase_deliverable_field_label')
+    deliverable_field_labels.should_not be_empty
+    deliverable_field_labels.count.should eq @label_names.count
+    deliverable_field_labels.each_with_index { |element, index|
       element.should have_content(@label_names[index])
     }
 

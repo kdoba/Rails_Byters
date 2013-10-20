@@ -36,9 +36,9 @@ describe 'Project Overview' do
     should have_link('Delete')
 
     #test project content
-    find('input#name').has_text? "First Project"
-    find('textarea#description').has_text? "Yohoho"
-    find('input#lifecycle').has_text? "Agile"
+    find('input#name').value.should eq "Dummy 2"
+    find('textarea#description').should have_text "Yohoho"
+    find('input#lifecycle').value.should eq "Spiral"
 
     #test project phase table
     should have_table('phase_table')
