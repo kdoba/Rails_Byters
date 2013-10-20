@@ -78,19 +78,20 @@ describe ProjectPhaseDeliverableController do
   end
 
   context "Unsuccessfully create a new deliverable" do
-    before do
-      post "create", {:project_phase_deliverable => {:description =>"Tomato deliverable", :project_phase_id=> @project_phase.id}}
-      @deliverable = assigns(:deliverable)
-    end
-
     #TODO: make this more detailed error message!!!
     it "should render new template with error message" do
+      post "create", {:project_phase_deliverable => {:description =>"Tomato deliverable", :project_phase_id=> @project_phase.id}}
+      @deliverable = assigns(:deliverable)
       response.should render_template("new")
       flash[:alert].should_not be_nil
       flash[:alert].should_not be_empty
     end
 
-  #TODO check behavior if  project_phase_id is not present
+    it "should redirect to the home page with an error message if project_phase_id missing" do
+      post "create", {:project_phase_deliverable => {:description =>"Tomato deliverable"}}
+      response.should redirect_to "/projects"
+      flash[:alert].should_not be_empty
+    end
   end
 end
 
