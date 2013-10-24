@@ -13,7 +13,7 @@ class ProjectPhaseDeliverable < ActiveRecord::Base
   validates :deliverable_type_id, presence:true
   validates :effort,              presence:true
 
-  @@complexities = {1 => "Small", 2 => "Medium", 3 => "Large"}
+  @@complexities = {1 => "Simple", 2 => "Medium", 3 => "Complex"}
 
   # add some dummy data for testing
   @@deliverable_types = {1 => "Type 1", 2 => "Type 2", 3 => "Type 3"}
