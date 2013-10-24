@@ -1,3 +1,12 @@
+<%
+   #TODO: Populate this data from the controller
+   @types = {"1" => "1",'2' => '2', '3' => '3'}
+%>
+
+<script type="text/javascript">
+    var types = <%= ActiveSupport::JSON.encode(@types).html_safe %>;
+</script>
+
 <% if @deliverable.errors.any? %>
     <% @deliverable.errors.full_messages.each do |msg| %>
         <small class="error"><%= msg %></small>

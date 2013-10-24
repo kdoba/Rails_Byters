@@ -10,6 +10,7 @@ group :test do
   gem 'capybara', '2.1.0'
   gem "simplecov", "0.7.1"
   gem 'shoulda-matchers'
+  gem 'selenium-webdriver'
 end
 
 group :development, :test do

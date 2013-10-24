@@ -42,4 +42,8 @@ FactoryGirl.define do
     lifecycle_phase_id 1
     uom_id 1
   end
+
+  factory :deliverable_uom do
+    name "MyString"
+  end
 end
