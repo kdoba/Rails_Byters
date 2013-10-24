@@ -40,8 +40,8 @@ describe "New Project Phase Deliverable" do
     find("form#new_project_phase_deliverable").native.attributes["action"].to_s.should == "/project_phase_deliverable/create"
 
     #test deliverable type id dropdown
-    deliverables = ["Type 1", "Type 2", "Type 3"] #Lifecycle.all.map {|lifecycle| lifecycle.name}
-    page.should have_select("project_phase_deliverable_deliverable_type_id", :options => deliverables)
+    deliverableTypes = DeliverableType.find_all_by_lifecycle_phase_id(@project_phase.lifecycle_phase.id).map{|type| type.name}
+    page.should have_select("project_phase_deliverable_deliverable_type_id", :options => deliverableTypes)
 
   end
 

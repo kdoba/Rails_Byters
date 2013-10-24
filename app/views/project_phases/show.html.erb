@@ -27,7 +27,7 @@
           <% @project_phase_deliverables.each_with_index do |deliverable, index| %>
               <tr id="row_<%= index + 1 %>">
                 <td class="name"><%= link_to deliverable.name, deliverable %></td>
-                <td class="type"><%= deliverable.deliverable_type_string %></td>
+                <td class="type"><%= deliverable.deliverable_type.name %></td>
                 <td class="complexity"><%= deliverable.complexity_string %></td>
                 <td class="size"><%= deliverable.size %></td>
                 <td class="unit"><%= deliverable.uom_string %></td>

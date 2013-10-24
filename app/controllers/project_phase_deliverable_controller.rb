@@ -1,9 +1,17 @@
 class ProjectPhaseDeliverableController < ApplicationController
 
   # TODO: We should really refactor how we're calling globally used variables/resources
+
   def show
     @deliverable          = ProjectPhaseDeliverable.find(params[:id])
     @project_phase_id     = @deliverable.project_phase_id
+
+    @deliverableTypes = DeliverableType.find_all_by_lifecycle_phase_id(ProjectPhase.find(@project_phase_id).lifecycle_phase_id)
+
+    @deliverableTypesArray = []
+    @deliverableTypes.each do |type|
+      @deliverableTypesArray.append([type.name,type.id])
+    end
   end
 
   def new
@@ -12,8 +20,15 @@ class ProjectPhaseDeliverableController < ApplicationController
     if @project_phase_id.nil? || @project_phase_id.empty?
       flash[:alert] = "Please specify project phase id in order to create new deliverable."
       redirect_to '/projects'
+    else
+      @deliverable          = ProjectPhaseDeliverable.new
+      @deliverableTypes = DeliverableType.find_all_by_lifecycle_phase_id(ProjectPhase.find(@project_phase_id).lifecycle_phase_id)
+
+      @deliverableTypesArray = []
+      @deliverableTypes.each do |type|
+        @deliverableTypesArray.append([type.name,type.id])
+      end
     end
-    @deliverable          = ProjectPhaseDeliverable.new
   end
 
   def create
