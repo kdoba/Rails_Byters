@@ -51,7 +51,7 @@ describe 'Project Phase Deliverable Show page' do
 
     should have_select("project_phase_deliverable_deliverable_type_id", :selected => "Type 1", :options => types)
     should have_select("project_phase_deliverable_uom_id",              :selected => "Words",  :options => uom)
-    should have_select("project_phase_deliverable_complexity_id",       :selected => "Small",  :options => complexities)
+    should have_select("project_phase_deliverable_complexity_id",       :selected => "Simple",  :options => complexities)
 
     find('input#project_phase_deliverable_size').value.should eq "1"
     find('input#project_phase_deliverable_rate').value.should eq "1"

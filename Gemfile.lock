@@ -171,6 +171,7 @@ DEPENDENCIES
   factory_girl_rails
   faker (= 1.1.2)
   jquery-rails
+  json (= 1.8.1)
   pg
   rails (= 3.2.14)
   rails_12factor (= 0.0.2)

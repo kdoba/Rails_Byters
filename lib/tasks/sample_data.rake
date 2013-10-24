@@ -14,28 +14,29 @@ namespace :db do
     json = File.read('deliverable_types_data.json')
     deliverableTypesData = JSON.parse(json)
 
-    deliverableTypesData.each do |lifecycle, value |
+    ##populate the pre-defined lifecycles and lifecycle phases
+    #lifecycleData = {       "Waterfall" => ["Requirement Specification", "Design", "Construction", "Integration",
+    #                                         "Testing", "Installation", "Maintenance"],
+    #                         "Spiral" => ["Objective Planning", "Analyze Risks", "Engineering", "Iteration Planning"],
+    #                         "Iterative" => ["Inception", "Elaboration", "Construction", "Transition"],
+    #                         "Agile" => ["Exploration", "Planning", "Iterations to Release", "Deployment", "Maintenance"],
+    #                         "Rapid" => ["Requirements", "Design", "Construction", "Cutover"]
+    #                }
+    #lifecycleData.each_pair { |lifecycle, lifecyclePhaseArray|
 
-    end
-
-    #populate the pre-defined lifecycles and lifecycle phases
-    lifecycleData = {       "Waterfall" => ["Requirement Specification", "Design", "Construction", "Integration",
-                                             "Testing", "Installation", "Maintenance"],
-                             "Spiral" => ["Objective Planning", "Analyze Risks", "Engineering", "Iteration Planning"],
-                             "Iterative" => ["Inception", "Elaboration", "Construction", "Transition"],
-                             "Agile" => ["Exploration", "Planning", "Iterations to Release", "Deployment", "Maintenance"],
-                             "Rapid" => ["Requirements", "Design", "Construction", "Cutover"]
-                    }
-    lifecycleData.each_pair { |lifecycle, lifecyclePhaseArray|
-
+    deliverableTypesData.each_pair do |lifecycle, lifecyclePhaseHash|
       # create a new lifecycle entry
       newLifecycle = FactoryGirl.create(:lifecycle, name: lifecycle)
 
       # create lifecycle phases for the new lifecycle
-      lifecyclePhaseArray.each_with_index { |phase, index|
-        FactoryGirl.create(:lifecycle_phase, name: phase, sequenceNumber: index, lifecycle_id:newLifecycle.id)
-      }
-    }
+      lifecyclePhaseHash.each_with_index do |(lifecyclePhase,deliverableTypeArray),index|
+        newLifecyclePhase = FactoryGirl.create(:lifecycle_phase, name: lifecyclePhase, sequenceNumber: index, lifecycle_id:newLifecycle.id)
+
+        deliverableTypeArray.each do |propertyArray|
+          FactoryGirl.create(:deliverable_type, name: propertyArray[0], lifecycle_phase_id:newLifecyclePhase.id)
+        end
+      end
+    end
 
     @lifecycleCount = Lifecycle.count
     if Rails.env.development?

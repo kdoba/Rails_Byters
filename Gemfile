@@ -40,6 +40,8 @@ gem 'jquery-rails'
 #CSS framework
 gem 'zurb-foundation'
 
+gem 'json', '1.8.1'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
