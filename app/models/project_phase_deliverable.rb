@@ -3,6 +3,7 @@ class ProjectPhaseDeliverable < ActiveRecord::Base
   attr_accessible :project_phase_id, :name, :description, :uom_id, :size, :rate, :complexity_id, :deliverable_type_id, :effort
 
   belongs_to :project_phase
+  belongs_to :deliverable_type
 
   validates :project_phase_id,    presence:true
   validates :name,                presence:true

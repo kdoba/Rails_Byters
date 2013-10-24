@@ -17,4 +17,5 @@ class LifecyclePhase < ActiveRecord::Base
   validates :name, presence:true
   validates :sequenceNumber, presence:true
   belongs_to :lifecycle
+  has_many :deliverable_types
 end

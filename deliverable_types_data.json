@@ -1,0 +1,7 @@
+{"Waterfall":{	"Requirement" 	: [ ["User Narrative","Pages"],["User Requirement","Pages"],["Business Requirement","Pages"] ],
+		"Design"		: [ ["Architecture Design Doc", "Words"],["Architecture Design Diagram", "Diagrams"] ] 
+	        },
+ "Spiral" :    {  "Objective Planning": [ ["User Narrative","Pages"],["User Requirement","Pages"],["Business Requirement","Pages"] ],
+		"Analyze Risks"	: [ ["Risk Analysis","Pages"],["Risk Identification","Pages"],["Risk Mitigation", "Pages"] ]
+	        }
+}	

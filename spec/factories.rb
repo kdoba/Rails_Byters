@@ -36,4 +36,10 @@ FactoryGirl.define do
     sequenceNumber 1
     lifecycle_id 1
   end
+
+  factory :deliverable_type do
+    name "MyString"
+    lifecycle_phase_id 1
+    uom_id 1
+  end
 end

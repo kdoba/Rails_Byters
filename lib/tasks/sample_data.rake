@@ -10,8 +10,15 @@ namespace :db do
 
   task populate: :environment do
 
-    #populate the pre-defined lifecycles and lifecycle phases
 
+    json = File.read('deliverable_types_data.json')
+    deliverableTypesData = JSON.parse(json)
+
+    deliverableTypesData.each do |lifecycle, value |
+
+    end
+
+    #populate the pre-defined lifecycles and lifecycle phases
     lifecycleData = {       "Waterfall" => ["Requirement Specification", "Design", "Construction", "Integration",
                                              "Testing", "Installation", "Maintenance"],
                              "Spiral" => ["Objective Planning", "Analyze Risks", "Engineering", "Iteration Planning"],
@@ -50,6 +57,7 @@ namespace :db do
 
       end
     end
+
 
   end
 end

@@ -15,8 +15,6 @@ describe LifecyclePhase do
     LifecyclePhase.new(:sequenceNumber => "").should_not be_valid
   end
 
-  it "should belong to a lifecycle" do
-    should belong_to :lifecycle
-  end
-
+  it { should belong_to :lifecycle }
+  it { should have_many :deliverable_types }
 end

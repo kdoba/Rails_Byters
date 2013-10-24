@@ -8,6 +8,8 @@ describe ProjectPhaseDeliverable do
       subject {:project_phase_deliverable}
     end
 
+    it { should belong_to :deliverable_type }
+
     context "Testing for model field response" do
       it {should respond_to :project_phase_id}
       it {should respond_to :name}
