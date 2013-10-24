@@ -11,18 +11,25 @@ namespace :db do
   task populate: :environment do
 
 
-    json = File.read('deliverable_types_data.json')
-    deliverableTypesData = JSON.parse(json)
+    json = File.read('deliverable_types_data_complete.json')
+    parsedData = JSON.parse(json)
 
-    ##populate the pre-defined lifecycles and lifecycle phases
-    #lifecycleData = {       "Waterfall" => ["Requirement Specification", "Design", "Construction", "Integration",
-    #                                         "Testing", "Installation", "Maintenance"],
-    #                         "Spiral" => ["Objective Planning", "Analyze Risks", "Engineering", "Iteration Planning"],
-    #                         "Iterative" => ["Inception", "Elaboration", "Construction", "Transition"],
-    #                         "Agile" => ["Exploration", "Planning", "Iterations to Release", "Deployment", "Maintenance"],
-    #                         "Rapid" => ["Requirements", "Design", "Construction", "Cutover"]
-    #                }
-    #lifecycleData.each_pair { |lifecycle, lifecyclePhaseArray|
+
+    deliverableTypesData = Hash.new
+    parsedData.each do |dataEntry|
+      if !deliverableTypesData.has_key?(dataEntry[0])
+        deliverableTypesData[dataEntry[0]] = Hash.new()
+      end
+
+      lifecycleHash = deliverableTypesData[dataEntry[0]]
+      if !lifecycleHash.has_key?(dataEntry[1])
+        lifecycleHash[dataEntry[1]] = []
+      end
+
+      phaseArray = lifecycleHash[dataEntry[1]]
+      phaseArray.append([dataEntry[2], dataEntry[3]])
+
+    end
 
     deliverableTypesData.each_pair do |lifecycle, lifecyclePhaseHash|
       # create a new lifecycle entry

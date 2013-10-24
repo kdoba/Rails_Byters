@@ -29,6 +29,8 @@ class ProjectPhaseDeliverableController < ApplicationController
         @deliverableTypesArray.append([type.name,type.id])
       end
     end
+
+    puts @deliverableTypesArray
   end
 
   def create
