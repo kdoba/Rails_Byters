@@ -52,9 +52,16 @@ describe "New Project Phase Deliverable" do
       current_path.should eq "/project_phases/" + @project_phase.id.to_s
     end
 
+    it "should display error message when invalid input provided" do
+      click_button('Create')
+      current_path.should eq '/project_phase_deliverable/create'
+      page.should have_title 'Create New Deliverable'
+      page.should have_content 'Please fix the following errors.'
+    end
+
   end
 
-  it "when the deliverable type is selected, UoM should be filled in or changed accordingly" do
+  it "when the deliverable type is selected, UoM should be filled in or changed accordingly", :speed => 'slow' do
     Capybara.current_driver = :selenium
 
     @project_phase = FactoryGirl.create(:project_phase)

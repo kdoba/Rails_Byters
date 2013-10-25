@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131024040240) do
+ActiveRecord::Schema.define(:version => 20131025031106) do
 
   create_table "deliverable_types", :force => true do |t|
     t.string   "name"
@@ -19,12 +19,6 @@ ActiveRecord::Schema.define(:version => 20131024040240) do
     t.integer  "uom_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
-  end
-
-  create_table "deliverable_uoms", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "lifecycle_phases", :force => true do |t|
@@ -70,6 +64,12 @@ ActiveRecord::Schema.define(:version => 20131024040240) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.integer  "lifecycle_id"
+  end
+
+  create_table "uoms", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
