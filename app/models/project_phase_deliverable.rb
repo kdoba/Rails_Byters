@@ -39,9 +39,9 @@ class ProjectPhaseDeliverable < ActiveRecord::Base
   #end
 
 
-  def self.units_of_measurement
-    @@units_of_measurement
-  end
+  #def self.units_of_measurement
+  #  @@units_of_measurement
+  #end
 
   def uom_string
     @@units_of_measurement[uom_id]

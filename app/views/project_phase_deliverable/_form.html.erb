@@ -33,7 +33,7 @@
 <div class="row">
   <div class="large-12 columns">
     <%= f.label :uom_id, 'Unit of Measurement <small>required</small>'.html_safe, class: "project_phase_deliverable_field_label" %>
-    <%= f.select :uom_id, ProjectPhaseDeliverable.units_of_measurement.collect{ |index, value| [value, index] } %>
+    <%= f.select :uom_id, @uoms %>
   </div>
 </div>
 <div class="row">

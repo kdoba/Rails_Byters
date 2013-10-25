@@ -6,6 +6,7 @@ class ProjectPhaseDeliverableController < ApplicationController
     @deliverable          = ProjectPhaseDeliverable.find(params[:id])
     @project_phase_id     = @deliverable.project_phase_id
     getDeliverableTypes()
+    @uoms = Uom.getAllForSelect
   end
 
   def new
@@ -17,6 +18,7 @@ class ProjectPhaseDeliverableController < ApplicationController
     else
       @deliverable          = ProjectPhaseDeliverable.new
       getDeliverableTypes()
+      @uoms = Uom.getAllForSelect
     end
   end
 
@@ -46,6 +48,7 @@ class ProjectPhaseDeliverableController < ApplicationController
       else
         flash[:alert] = "Please fix the following errors."
         getDeliverableTypes()
+        @uoms = Uom.getAllForSelect
         render :new
       end
     end

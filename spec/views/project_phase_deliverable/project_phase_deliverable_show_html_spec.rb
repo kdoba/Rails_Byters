@@ -46,11 +46,11 @@ describe 'Project Phase Deliverable Show page' do
     find('textarea#project_phase_deliverable_description').should have_text "yay"
 
     types        = DeliverableType.find_all_by_lifecycle_phase_id(@project_phase.lifecycle_phase_id).map {|type| type.name}
-    uom          = ProjectPhaseDeliverable.units_of_measurement.collect{ |index, value| value }
+    uom          = Uom.all.map{ |uom| uom.name }
     complexities = ProjectPhaseDeliverable.complexities.collect{ |index, value| value }
 
     should have_select("project_phase_deliverable_deliverable_type_id", :selected => types[0], :options => types)
-    should have_select("project_phase_deliverable_uom_id",              :selected => "Words",  :options => uom)
+    should have_select("project_phase_deliverable_uom_id",              :selected => "Pages",  :options => uom)
     should have_select("project_phase_deliverable_complexity_id",       :selected => "Simple",  :options => complexities)
 
     find('input#project_phase_deliverable_size').value.should eq "1"

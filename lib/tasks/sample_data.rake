@@ -16,6 +16,7 @@ namespace :db do
 
     # parse the data and put it in a more optimized hash structure
     deliverableTypesData = Hash.new
+    uomArray = []
     parsedData.each do |dataEntry|
       if !deliverableTypesData.has_key?(dataEntry[0])
         deliverableTypesData[dataEntry[0]] = Hash.new()
@@ -27,8 +28,19 @@ namespace :db do
       end
 
       phaseArray = lifecycleHash[dataEntry[1]]
-      phaseArray.append([dataEntry[2], dataEntry[3]])
+      if !uomArray.include?(dataEntry[3])
+        uomArray.append dataEntry[3]
+      end
 
+      uomIndex = uomArray.index dataEntry[3]
+
+      phaseArray.append([dataEntry[2], uomIndex + 1])
+
+    end
+
+    # Create table entries for unit of measures
+    uomArray.each do |uomName|
+      FactoryGirl.create(:uom, name: uomName)
     end
 
     # iterate the optimized hash structure to create entries for our data tables
@@ -41,7 +53,7 @@ namespace :db do
         newLifecyclePhase = FactoryGirl.create(:lifecycle_phase, name: lifecyclePhase, sequenceNumber: index, lifecycle_id:newLifecycle.id)
 
         deliverableTypeArray.each do |propertyArray|
-          FactoryGirl.create(:deliverable_type, name: propertyArray[0], lifecycle_phase_id:newLifecyclePhase.id)
+          FactoryGirl.create(:deliverable_type, name: propertyArray[0], lifecycle_phase_id:newLifecyclePhase.id, uom_id: propertyArray[1])
         end
       end
     end

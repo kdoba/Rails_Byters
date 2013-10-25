@@ -49,7 +49,7 @@ describe ProjectPhaseDeliverable do
         @deliverable = ProjectPhaseDeliverable.new(complexity_id: 1, deliverable_type_id: 1, uom_id: 1)
         @deliverable.complexity_string.should eq ProjectPhaseDeliverable.complexities[1]
         @deliverable.deliverable_type.name.should eq DeliverableType.find(1).name
-        @deliverable.uom_string.should eq ProjectPhaseDeliverable.units_of_measurement[1]
+        @deliverable.uom_string.should eq Uom.all[1].name
       end
     end
   end
