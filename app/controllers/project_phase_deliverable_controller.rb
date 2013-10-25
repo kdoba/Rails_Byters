@@ -5,13 +5,7 @@ class ProjectPhaseDeliverableController < ApplicationController
   def show
     @deliverable          = ProjectPhaseDeliverable.find(params[:id])
     @project_phase_id     = @deliverable.project_phase_id
-
-    @deliverableTypes = DeliverableType.find_all_by_lifecycle_phase_id(ProjectPhase.find(@project_phase_id).lifecycle_phase_id)
-
-    @deliverableTypesArray = []
-    @deliverableTypes.each do |type|
-      @deliverableTypesArray.append([type.name,type.id])
-    end
+    getDeliverableTypes()
   end
 
   def new
@@ -22,15 +16,8 @@ class ProjectPhaseDeliverableController < ApplicationController
       redirect_to '/projects'
     else
       @deliverable          = ProjectPhaseDeliverable.new
-      @deliverableTypes = DeliverableType.find_all_by_lifecycle_phase_id(ProjectPhase.find(@project_phase_id).lifecycle_phase_id)
-
-      @deliverableTypesArray = []
-      @deliverableTypes.each do |type|
-        @deliverableTypesArray.append([type.name,type.id])
-      end
+      getDeliverableTypes()
     end
-
-    puts @deliverableTypesArray
   end
 
   def create
@@ -41,8 +28,6 @@ class ProjectPhaseDeliverableController < ApplicationController
       flash[:alert] = "Please specify project phase id in order to create new deliverable."
       redirect_to '/projects'
     else
-
-
       @deliverable = ProjectPhaseDeliverable.new(
         project_phase_id:  @project_phase_id,
         name: params[:project_phase_deliverable][:name],
@@ -60,8 +45,22 @@ class ProjectPhaseDeliverableController < ApplicationController
         redirect_to '/project_phases/' + @deliverable.project_phase_id.to_s
       else
         flash[:alert] = "Please fix the following errors."
+        getDeliverableTypes()
         render :new
       end
+    end
+  end
+
+  # Get deliverable types by lifecycle phase ID
+  # Helper method, not intended to be called from outside
+  # Populates @deliverableTypes with deliverable types for lifecycle phase
+  # Populates @deliverableTypesArray with deliverable type names keyed by deliverable type IDs
+  def getDeliverableTypes
+    @projectPhase = ProjectPhase.find(@project_phase_id)
+    @deliverableTypes = DeliverableType.find_all_by_lifecycle_phase_id(@projectPhase.lifecycle_phase_id)
+    @deliverableTypesArray = []
+    @deliverableTypes.each do |type|
+      @deliverableTypesArray.append([type.name,type.id])
     end
   end
 end
