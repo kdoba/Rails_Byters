@@ -1,20 +1,20 @@
-#To Populate you database:
-# bundle exec rake db:populate
-# bundle exec rake test:prepare
+#To Populate your database:
+# bundle exec rake db:repopulate
 
 namespace :db do
   desc "Fill database with sample data"
 
   # call this if you already have a populated database and want to repopulate
+  # this is an idempotent call
   task :repopulate => [:environment, 'db:reset', 'db:populate']
 
   task populate: :environment do
 
-
+    # read the prepopulate data json
     json = File.read('deliverable_types_data_complete.json')
     parsedData = JSON.parse(json)
 
-
+    # parse the data and put it in a more optimized hash structure
     deliverableTypesData = Hash.new
     parsedData.each do |dataEntry|
       if !deliverableTypesData.has_key?(dataEntry[0])
@@ -31,6 +31,7 @@ namespace :db do
 
     end
 
+    # iterate the optimized hash structure to create entries for our data tables
     deliverableTypesData.each_pair do |lifecycle, lifecyclePhaseHash|
       # create a new lifecycle entry
       newLifecycle = FactoryGirl.create(:lifecycle, name: lifecycle)
@@ -45,6 +46,7 @@ namespace :db do
       end
     end
 
+    # if in development environment, populate some dummy data for demo purpose
     @lifecycleCount = Lifecycle.count
     if Rails.env.development?
       10.times do |n|
