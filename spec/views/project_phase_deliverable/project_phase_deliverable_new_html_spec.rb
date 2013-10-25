@@ -54,7 +54,7 @@ describe "New Project Phase Deliverable" do
 
   end
 
-  it "when the deliverable type is selected, UoM should be filled in or changed accordingly" do
+  it "when the deliverable type is selected, UoM should be filled in or changed accordingly", :speed => 'slow' do
     Capybara.current_driver = :selenium
 
     @project_phase = FactoryGirl.create(:project_phase)

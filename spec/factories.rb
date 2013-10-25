@@ -43,7 +43,7 @@ FactoryGirl.define do
     uom_id 1
   end
 
-  factory :deliverable_uom do
+  factory :uom do
     name "MyString"
   end
 end

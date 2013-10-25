@@ -35,6 +35,7 @@ describe ProjectPhaseDeliverable do
 
     context 'Testing for models associations with other tables' do
       it {should belong_to :project_phase}
+      it {should belong_to :uom}
     end
 
     context 'complexity_string, deliverable_type_string, uom_string method' do
