@@ -48,10 +48,6 @@ class ProjectsController < ApplicationController
       @lifecycles = Lifecycle.all
       render :new
     end
-
-    if false
-      puts "test less than 100% code coverage"
-    end
   end
 
   # This function gets a list of all lifecycles in lifecycle table and renders the new project html form
