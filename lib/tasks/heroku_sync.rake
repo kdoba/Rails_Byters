@@ -101,16 +101,18 @@ namespace :heroku do
     desc "Commits the changes"
     task :commit do
       Dir.chdir HerokuDir do
-        raise "Could not commit #{HerokuDir}" unless
-          system "git commit -m 'heroku:sync:files at #{Time.now}'"
-            end
+        #raise "Could not commit #{HerokuDir}" unless
+        # silently fails if no new change is detected
+        system "git commit -m 'heroku:sync:files at #{Time.now}'"
+      end
     end
 
     desc "Pushes the changes back to heroku repository"
     task :push do
       Dir.chdir HerokuDir do
-        raise "Could not push #{HerokuAppName}" unless
-            system "git push"
+        #raise "Could not push #{HerokuAppName}" unless
+        # silently fails if no new change is detected
+        system "git push"
       end
     end
   end
