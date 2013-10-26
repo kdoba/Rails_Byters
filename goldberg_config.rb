@@ -9,7 +9,7 @@ Project.configure do |config|
 
   config.group = '96700'
   email = "khoa.doba@west.cmu.edu"
-  from = "khoa.doba@west.cmu.edu"
+  from = "khoa.doba@sv.cmu.edu"
 
   config.on_build_completion do |build,notification,previous_build_status|
     puts "on_build_completion call back in goldberg_config.rb on_build_completion"
