@@ -65,5 +65,9 @@ class ProjectPhaseDeliverableController < ApplicationController
     @deliverableTypes.each do |type|
       @deliverableTypesArray.append([type.name,type.id])
     end
+
+    if false
+      puts "This doesn't run"
+    end
   end
 end

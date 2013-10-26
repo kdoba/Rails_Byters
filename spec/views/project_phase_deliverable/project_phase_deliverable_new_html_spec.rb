@@ -61,8 +61,8 @@ describe "New Project Phase Deliverable" do
 
   end
 
-  it "when the deliverable type is selected, UoM should be filled in or changed accordingly", :speed => 'slow' do
-    Capybara.current_driver = :selenium
+
+  it "when the deliverable type is selected, UoM should be filled in or changed accordingly", :js => true, :speed => 'slow' do
 
     @project_phase = FactoryGirl.create(:project_phase)
     allow(ProjectPhase).to receive(:find).and_return(@project_phase)
@@ -72,7 +72,6 @@ describe "New Project Phase Deliverable" do
       page.find("#project_phase_deliverable_uom_id").value
     }.from("1").to("2")
 
-    Capybara.use_default_driver
   end
 
 end
